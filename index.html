@@ -59,7 +59,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative; /* For positioning dark mode toggle */
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem; /* Space between logo and dark mode toggle */
         }
 
         .logo {
@@ -133,6 +139,7 @@
             gap: 1rem;
             margin-bottom: 2rem;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         .filter-bar select {
@@ -167,7 +174,7 @@
             max-width: 100%;
             width: 300px;
             cursor: pointer;
-            position: relative; /* For positioning the delete button */
+            position: relative;
         }
 
         .product-card:hover {
@@ -254,7 +261,7 @@
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
-            display bambino-block;
+            display: inline-block;
             margin-top: 0.5rem;
             transition: background 0.3s;
         }
@@ -263,7 +270,6 @@
             background: var(--primary);
         }
 
-        /* Delete Button Style */
         .delete-button {
             background: #e74c3c;
             color: white;
@@ -284,7 +290,6 @@
             background: #c0392b;
         }
 
-        /* Remove Button Style for Cart */
         .remove-button {
             background: #e74c3c;
             color: white;
@@ -300,7 +305,6 @@
             background: #c0392b;
         }
 
-        /* Currency Switcher Style */
         #currency-switcher {
             padding: 0.5rem;
             border: 1px solid #ddd;
@@ -313,13 +317,6 @@
         #currency-switcher:focus {
             outline: none;
             border-color: var(--accent);
-        }
-
-        /* Dark Mode Toggle Style */
-        .dark-mode-toggle {
-            position: absolute;
-            top: 0.5rem;
-            left: 0.5rem;
         }
 
         #dark-mode-toggle {
@@ -335,7 +332,6 @@
             transform: scale(1.1);
         }
 
-        /* Dark Mode Styles */
         body.dark-mode {
             background: #1a1a1a;
             color: #f4f4f4;
@@ -622,7 +618,6 @@
                 background: white;
                 z-index: 10;
             }
-            /* Dark Mode Adjustments for Mobile */
             body.dark-mode .nav-links {
                 background: #2d2d2d;
             }
@@ -648,23 +643,18 @@
 <body>
     <header role="banner">
         <nav role="navigation">
-            <div class="dark-mode-toggle">
+            <div class="logo-container">
+                <a href="#" title="Back to Top">
+                    <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo" loading="lazy">
+                </a>
                 <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
             </div>
-            <a href="#" title="Back to Top">
-                <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo" loading="lazy">
-            </a>
             <div class="hamburger">☰</div>
             <div class="nav-links">
                 <a href="#" class="home-button">🏠</a>
                 <a href="#shop">Shop</a>
                 <a href="#about">About</a>
                 <a href="#partner">Partner</a>
-                <select id="currency-switcher" style="margin-left: 1rem;">
-                    <option value="USD" selected>USD</option>
-                    <option value="SEK">SEK</option>
-                    <option value="EUR">EUR</option>
-                </select>
             </div>
         </nav>
     </header>
@@ -676,19 +666,16 @@
             <a href="#shop" class="cta-button">View Products</a>
         </section>
 
-        <!-- Introduction Section -->
         <section id="introduction" class="introduction">
             <h2>Introduction</h2>
             <p>At Hatake TCG, we’re more than just a brand – we’re a community of passionate trading card game (TCG) enthusiasts dedicated to enhancing every aspect of your gaming experience. Founded in 2025 in the heart of Falköping, Sweden, Hatake is the perfect fusion of Nordic elegance, premium craftsmanship, and a deep love for the TCG culture.</p>
             <p>Our mission is clear: to craft high-quality, innovative gear that rivals the best in the industry, while staying true to our roots. With a commitment to ethical manufacturing and a vision for sustainable Nordic production, we’re not just creating products – we’re building a legacy.</p>
         </section>
 
-        <!-- Shop Section -->
         <section id="shop">
             <h2>Our Products</h2>
             <p>Explore our curated collection of premium TCG accessories, designed with Nordic craftsmanship to elevate your gaming experience.</p>
 
-            <!-- Wishlist Section -->
             <div class="wishlist-section">
                 <h3>Your Wishlist</h3>
                 <div class="wishlist-grid" id="wishlist-grid"></div>
@@ -707,6 +694,11 @@
                     <option value="default">Sort: Default</option>
                     <option value="price-low">Price: Low to High</option>
                     <option value="price-high">Price: High to Low</option>
+                </select>
+                <select id="currency-switcher">
+                    <option value="USD" selected>USD</option>
+                    <option value="SEK">SEK</option>
+                    <option value="EUR">EUR</option>
                 </select>
             </div>
             <div class="product-grid">
@@ -772,7 +764,6 @@
                 </div>
             </div>
 
-            <!-- Preorder Form -->
             <div id="preorder" class="preorder-form">
                 <h3>Preorder Now</h3>
                 <p>Reserve your Hatake TCG products before they launch!</p>
@@ -790,7 +781,6 @@
             </div>
         </section>
 
-        <!-- About Section -->
         <section id="about">
             <h2>Our Story</h2>
             <div class="grid-2col">
@@ -814,7 +804,6 @@
             </ul>
         </section>
 
-        <!-- Partner Section -->
         <section id="partner">
             <h2>Become a Partner</h2>
             
@@ -842,7 +831,6 @@
                 </ul>
                 <p>Reach out to us at <a href="mailto:ewilliamhe@gmail.com" class="highlight">ewilliamhe@gmail.com</a> to learn more about this role.</p>
 
-                <!-- Partner Application Form -->
                 <div class="partner-form">
                     <h4>Apply to Join Our Team</h4>
                     <form id="partner-form" action="https://formspree.io/f/mjkwkodn" method="POST">
@@ -867,7 +855,6 @@
                         Thank you for your application! We’ll get back to you soon.
                     </div>
                 </div>
-            Godfather (1972) - "I'm gonna make him an offer he can't refuse." clip with quote
             </div>
 
             <div class="partner-card" style="margin-top: 2rem;">
@@ -925,7 +912,6 @@
                 <a href="mailto:ewilliamhe@gmail.com" class="cta-button">Contact Us to Partner</a>
             </div>
 
-            <!-- Expanded FAQ Section -->
             <div class="faq-section">
                 <h3>Frequently Asked Questions</h3>
                 <details>
@@ -964,7 +950,7 @@
         <div class="social-links">
             <a href="https://discord.gg/Puq5ncSbjt">
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.074.031c-.21.375-.395.807-.535 1.237a18.323 18.323 0 00-4.885 0c-.14-.43-.325-.862-.535-1.237a.074.074 0 00-.074-.031 19.791 19.791 0 00-4.885 1.515 20.154 20.154 0 00-6.083 14.215c.005.023.013.047.022.07a20.314 20.314 0 006.132 3.092.074.074 0 00.08-.021c.473-.353.885-.776 1.235-1.231a.074.074 0 00-.042-.104 13.856 13.856 0 01-1.975-.977.074.074 0 01-.008-.123c.133-.1.265-.201.397-.303.131-.101.264-.201.397-.301a.074.074 0 01.087-.009c1.446.672 3.013 1.134 4.674 1.134s3.228-.462 4.674-1.134a.074.074 0 01.087.009c.133.1.265.201.397.301.131.101.264.201.397.303a.074.074 0 01-.008.123 13.856 13.856 0 01-1.975.977.074.074 0 00-.042.104c.35.455.762.878 1.235 1.231a.074.074 0 00.80.021 20.314 20.314 0 006.132-3.092c.009-.023.017-.047.022-.07a20.154 20.154 0 00-6.083-14.215zM8.466 15.697c-.915 0-1.666-.746-1.666-1.665 0-.919.751-1.665 1.666-1.665.916 0 1.667.746 1.667 1.665 0 .919-.751 1.665-1.667 1.665zm7.068 0c-.915 0-1.666-.746-1.666-1.665 0-.919.751-1.665 1.666-1.665.916 0 1.667.746 1.667 1.665 0 .919-.751 1.665-1.667 1.665z"/>
+                    <path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.074.031c-.21.375-.395.807-.535 1.237a18.323 18.323 0 00-4.885 0c-.14-.43-.325-.862-.535-1.237a.074.074 0 00-.074-.031 19.791 19.791 0 00-4.885 1.515 20.154 20.154 0 00-6.083 14.215c.005.023.013.047.022.07a20.314 20.314 0 006.132 3.092.074.074 0 00.80.021c.473-.353.885-.776 1.235-1.231a.074.074 0 00-.042-.104 13.856 13.856 0 01-1.975-.977.074.074 0 01-.008-.123c.133-.1.265-.201.397-.303.131-.101.264-.201.397-.301a.074.074 0 01.087-.009c1.446.672 3.013 1.134 4.674 1.134s3.228-.462 4.674-1.134a.074.074 0 01.087.009c.133.1.265.201.397.301.131.101.264.201.397.303a.074.074 0 01-.008.123 13.856 13.856 0 01-1.975.977.074.074 0 00-.042.104c.35.455.762.878 1.235 1.231a.074.074 0 00.80.021 20.314 20.314 0 006.132-3.092c.009-.023.017-.047.022-.07a20.154 20.154 0 00-6.083-14.215zM8.466 15.697c-.915 0-1.666-.746-1.666-1.665 0-.919.751-1.665 1.666-1.665.916 0 1.667.746 1.667 1.665 0 .919-.751 1.665-1.667 1.665zm7.068 0c-.915 0-1.666-.746-1.666-1.665 0-.919.751-1.665 1.666-1.665.916 0 1.667.746 1.667 1.665 0 .919-.751 1.665-1.667 1.665z"/>
                 </svg>
                 Discord
             </a>
@@ -998,7 +984,6 @@
     </div>
 
     <script>
-        // Header scroll effect
         window.addEventListener('scroll', () => {
             document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
             const backToTop = document.querySelector('.back-to-top');
@@ -1007,7 +992,6 @@
             if (stickyCta) stickyCta.style.display = window.scrollY > 200 ? 'block' : 'none';
         });
 
-        // Hamburger menu toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
         if (hamburger && navLinks) {
@@ -1016,7 +1000,6 @@
             });
         }
 
-        // Dark Mode Toggle
         const darkModeToggle = document.getElementById('dark-mode-toggle');
         const body = document.body;
 
@@ -1032,7 +1015,6 @@
             localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
         });
 
-        // Product filtering
         const categoryFilter = document.getElementById('category-filter');
         const sortFilter = document.getElementById('sort-filter');
         const productGrid = document.querySelector('.product-grid');
@@ -1072,9 +1054,8 @@
             sortFilter.addEventListener('change', filterProducts);
         }
 
-        // Cart functionality
         let cart = [];
-        const exchangeRates = { USD: 1, SEK: 10.5, EUR: 0.95 }; // Example rates as of April 2025
+        const exchangeRates = { USD: 1, SEK: 10.5, EUR: 0.95 };
 
         function updateCartDisplay() {
             const cartItemsDiv = document.getElementById('cart-items');
@@ -1097,7 +1078,6 @@
                 cartItemsDiv.appendChild(itemDiv);
                 total += priceInCurrency * item.quantity;
 
-                // Add event listener for remove button
                 itemDiv.querySelector('.remove-button').addEventListener('click', (e) => {
                     const index = parseInt(e.target.dataset.index);
                     cart.splice(index, 1);
@@ -1132,7 +1112,6 @@
             });
         });
 
-        // Currency Switcher
         const currencySwitcher = document.getElementById('currency-switcher');
 
         function updatePrices(currency) {
@@ -1149,7 +1128,6 @@
             updatePrices(selectedCurrency);
         });
 
-        // Wishlist functionality
         let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
         function updateWishlistDisplay() {
@@ -1214,7 +1192,6 @@
 
         updateWishlistDisplay();
 
-        // Lightbox for product details
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = lightbox.querySelector('img');
         const lightboxDescription = document.getElementById('lightbox-description');
@@ -1251,7 +1228,6 @@
             }
         });
 
-        // Preorder form submission
         const preorderForm = document.getElementById('preorder-form');
         const confirmationMessage = document.getElementById('confirmation-message');
 
@@ -1267,7 +1243,6 @@
             }, 1000);
         });
 
-        // Partner form submission
         const partnerForm = document.getElementById('partner-form');
         const partnerConfirmationMessage = document.getElementById('partner-confirmation-message');
 
@@ -1283,7 +1258,6 @@
             });
         }
 
-        // Check stock and update indicators
         document.querySelectorAll('.product-card').forEach(card => {
             const stock = parseInt(card.dataset.stock);
             const stockIndicator = card.querySelector('.stock-indicator');
@@ -1295,7 +1269,6 @@
             }
         });
 
-        // Initialize prices on page load
         updatePrices('USD');
     </script>
 </body>
