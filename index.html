@@ -59,6 +59,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative; /* For positioning dark mode toggle */
         }
 
         .logo {
@@ -253,7 +254,7 @@
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
-            display: inline-block;
+            display bambino-block;
             margin-top: 0.5rem;
             transition: background 0.3s;
         }
@@ -262,9 +263,9 @@
             background: var(--primary);
         }
 
-        /* New Delete Button Style */
+        /* Delete Button Style */
         .delete-button {
-            background: #e74c3c; /* Red color to indicate deletion */
+            background: #e74c3c;
             color: white;
             padding: 0.5rem 1rem;
             border: none;
@@ -280,7 +281,103 @@
         }
 
         .delete-button:hover {
-            background: #c0392b; /* Darker red on hover */
+            background: #c0392b;
+        }
+
+        /* Remove Button Style for Cart */
+        .remove-button {
+            background: #e74c3c;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .remove-button:hover {
+            background: #c0392b;
+        }
+
+        /* Currency Switcher Style */
+        #currency-switcher {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        #currency-switcher:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Dark Mode Toggle Style */
+        .dark-mode-toggle {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+        }
+
+        #dark-mode-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        #dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #f4f4f4;
+        }
+
+        body.dark-mode header {
+            background: #2d2d2d;
+        }
+
+        body.dark-mode header.scrolled {
+            background: rgba(45, 45, 45, 0.95);
+        }
+
+        body.dark-mode .product-card,
+        body.dark-mode .partner-card {
+            background: #333;
+            color: #f4f4f4;
+        }
+
+        body.dark-mode .nav-links a,
+        body.dark-mode .hamburger {
+            color: #f4f4f4;
+        }
+
+        body.dark-mode footer {
+            background: #111;
+        }
+
+        body.dark-mode .cta-button,
+        body.dark-mode .wishlist-button,
+        body.dark-mode .cart-button,
+        body.dark-mode .back-to-top,
+        body.dark-mode .sticky-cta {
+            background: #e74c3c;
+        }
+
+        body.dark-mode .cta-button:hover,
+        body.dark-mode .wishlist-button:hover,
+        body.dark-mode .cart-button:hover,
+        body.dark-mode .back-to-top:hover,
+        body.dark-mode .sticky-cta:hover {
+            background: #4A90E2;
         }
 
         .sticky-cta {
@@ -525,6 +622,10 @@
                 background: white;
                 z-index: 10;
             }
+            /* Dark Mode Adjustments for Mobile */
+            body.dark-mode .nav-links {
+                background: #2d2d2d;
+            }
         }
 
         @media (max-width: 400px) {
@@ -547,6 +648,9 @@
 <body>
     <header role="banner">
         <nav role="navigation">
+            <div class="dark-mode-toggle">
+                <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
+            </div>
             <a href="#" title="Back to Top">
                 <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo" loading="lazy">
             </a>
@@ -556,6 +660,11 @@
                 <a href="#shop">Shop</a>
                 <a href="#about">About</a>
                 <a href="#partner">Partner</a>
+                <select id="currency-switcher" style="margin-left: 1rem;">
+                    <option value="USD" selected>USD</option>
+                    <option value="SEK">SEK</option>
+                    <option value="EUR">EUR</option>
+                </select>
             </div>
         </nav>
     </header>
@@ -758,6 +867,7 @@
                         Thank you for your application! We’ll get back to you soon.
                     </div>
                 </div>
+            Godfather (1972) - "I'm gonna make him an offer he can't refuse." clip with quote
             </div>
 
             <div class="partner-card" style="margin-top: 2rem;">
@@ -906,6 +1016,22 @@
             });
         }
 
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.textContent = '☀️';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+            localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+        });
+
         // Product filtering
         const categoryFilter = document.getElementById('category-filter');
         const sortFilter = document.getElementById('sort-filter');
@@ -917,13 +1043,11 @@
 
             let filteredProducts = products;
 
-            // Filter by category
             const category = categoryFilter ? categoryFilter.value : 'all';
             if (category !== 'all') {
                 filteredProducts = products.filter(product => product.dataset.category === category);
             }
 
-            // Sort by price
             const sort = sortFilter ? sortFilter.value : 'default';
             if (sort !== 'default') {
                 filteredProducts = filteredProducts.sort((a, b) => {
@@ -933,13 +1057,11 @@
                 });
             }
 
-            // Update grid
-            productGrid.style.display = 'none'; // Force layout recalculation
+            productGrid.style.display = 'none';
             productGrid.innerHTML = '';
             filteredProducts.forEach(product => productGrid.appendChild(product));
             productGrid.style.display = 'grid';
 
-            // Show all products if no filters applied
             if (category === 'all' && sort === 'default') {
                 products.forEach(product => productGrid.appendChild(product));
             }
@@ -952,27 +1074,38 @@
 
         // Cart functionality
         let cart = [];
+        const exchangeRates = { USD: 1, SEK: 10.5, EUR: 0.95 }; // Example rates as of April 2025
 
         function updateCartDisplay() {
             const cartItemsDiv = document.getElementById('cart-items');
             const cartTotalDiv = document.getElementById('cart-total');
+            const selectedCurrency = document.getElementById('currency-switcher').value;
             cartItemsDiv.innerHTML = '';
 
             let total = 0;
             cart.forEach((item, index) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'cart-item';
+                const priceInCurrency = (item.price * exchangeRates[selectedCurrency]).toFixed(2);
                 itemDiv.innerHTML = `
-                    <span>${item.name} - $${item.price}</span>
+                    <span>${item.name} - ${selectedCurrency} ${priceInCurrency}</span>
                     <select onchange="updateCartItem(${index}, this.value)">
                         ${[...Array(10).keys()].map(i => `<option value="${i + 1}" ${item.quantity == i + 1 ? 'selected' : ''}>${i + 1}</option>`).join('')}
                     </select>
+                    <button class="remove-button" data-index="${index}">Remove</button>
                 `;
                 cartItemsDiv.appendChild(itemDiv);
-                total += item.price * item.quantity;
+                total += priceInCurrency * item.quantity;
+
+                // Add event listener for remove button
+                itemDiv.querySelector('.remove-button').addEventListener('click', (e) => {
+                    const index = parseInt(e.target.dataset.index);
+                    cart.splice(index, 1);
+                    updateCartDisplay();
+                });
             });
 
-            cartTotalDiv.textContent = `Total: $${total.toFixed(2)}`;
+            cartTotalDiv.textContent = `Total: ${selectedCurrency} ${total.toFixed(2)}`;
             document.getElementById('cart-data').value = JSON.stringify(cart);
         }
 
@@ -983,7 +1116,7 @@
 
         document.querySelectorAll('.cart-button').forEach(button => {
             button.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent lightbox from opening
+                e.stopPropagation();
                 const card = button.closest('.product-card');
                 const name = card.dataset.name;
                 const price = parseFloat(card.dataset.price);
@@ -999,6 +1132,23 @@
             });
         });
 
+        // Currency Switcher
+        const currencySwitcher = document.getElementById('currency-switcher');
+
+        function updatePrices(currency) {
+            document.querySelectorAll('.product-card').forEach(card => {
+                const basePrice = parseFloat(card.dataset.price);
+                const newPrice = (basePrice * exchangeRates[currency]).toFixed(2);
+                card.querySelector('.price').textContent = `${currency} ${newPrice}`;
+            });
+            updateCartDisplay();
+        }
+
+        currencySwitcher.addEventListener('change', (e) => {
+            const selectedCurrency = e.target.value;
+            updatePrices(selectedCurrency);
+        });
+
         // Wishlist functionality
         let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
@@ -1009,17 +1159,18 @@
             wishlist.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
+                const selectedCurrency = document.getElementById('currency-switcher').value;
+                const priceInCurrency = (item.price * exchangeRates[selectedCurrency]).toFixed(2);
                 card.innerHTML = `
                     <img src="${item.image}" alt="${item.name}" class="product-image" loading="lazy">
                     <h3>${item.name}</h3>
                     <p>${item.description}</p>
-                    <div class="price">$${item.price}</div>
+                    <div class="price">${selectedCurrency} ${priceInCurrency}</div>
                     <button class="cart-button">Add to Cart</button>
                     <button class="delete-button" data-index="${index}">Delete</button>
                 `;
                 wishlistGrid.appendChild(card);
 
-                // Reattach cart button event listener for wishlist items
                 card.querySelector('.cart-button').addEventListener('click', (e) => {
                     e.stopPropagation();
                     const existingItem = cart.find(cartItem => cartItem.name === item.name);
@@ -1028,18 +1179,16 @@
                     } else {
                         cart.push({ name: item.name, price: parseFloat(item.price), quantity: 1 });
                     }
-                    // Remove from wishlist after adding to cart
                     wishlist = wishlist.filter(wishItem => wishItem.name !== item.name);
                     localStorage.setItem('wishlist', JSON.stringify(wishlist));
                     updateWishlistDisplay();
                     updateCartDisplay();
                 });
 
-                // Add event listener for delete button
                 card.querySelector('.delete-button').addEventListener('click', (e) => {
                     e.stopPropagation();
                     const index = parseInt(e.target.dataset.index);
-                    wishlist.splice(index, 1); // Remove item at the specific index
+                    wishlist.splice(index, 1);
                     localStorage.setItem('wishlist', JSON.stringify(wishlist));
                     updateWishlistDisplay();
                 });
@@ -1048,7 +1197,7 @@
 
         document.querySelectorAll('.wishlist-button').forEach(button => {
             button.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent lightbox from opening
+                e.stopPropagation();
                 const card = button.closest('.product-card');
                 const name = card.dataset.name;
                 const price = card.dataset.price;
@@ -1063,7 +1212,6 @@
             });
         });
 
-        // Initialize wishlist on page load
         updateWishlistDisplay();
 
         // Lightbox for product details
@@ -1108,7 +1256,6 @@
         const confirmationMessage = document.getElementById('confirmation-message');
 
         preorderForm.addEventListener('submit', (e) => {
-            // Allow Formspree to handle the submission
             setTimeout(() => {
                 confirmationMessage.style.display = 'block';
                 cart = [];
@@ -1147,6 +1294,9 @@
                 card.querySelector('.wishlist-button').disabled = true;
             }
         });
+
+        // Initialize prices on page load
+        updatePrices('USD');
     </script>
 </body>
 </html>
