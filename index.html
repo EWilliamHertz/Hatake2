@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hatake TCG - Premium TCG Accessories</title>
-    <meta name="description" content="Premium TCG accessories crafted in GRAU Sweden by Hatake TCG. Shop deck boxes, sleeves, and more for trading card games.">
+    <meta name="description" content="Premium TCG accessories crafted in Sweden by Hatake TCG. Shop deck boxes, sleeves, and more for trading card games.">
     <meta name="keywords" content="TCG accessories, Hatake TCG, card sleeves, deck boxes, Sweden">
     <meta name="author" content="Hatake TCG">
     <meta property="og:title" content="Hatake TCG - Premium TCG Accessories">
@@ -80,6 +80,13 @@
             color: var(--accent);
         }
 
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
         main {
             padding: 4rem 2rem;
             max-width: 1200px;
@@ -100,7 +107,20 @@
             margin-top: 2rem;
         }
 
-        .product-card, .partner-card {
+        .product-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: box-shadow 0.3s, border 0.3s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 1px solid var(--accent);
+        }
+
+        .partner-card {
             background: white;
             padding: 1.5rem;
             border-radius: 8px;
@@ -169,6 +189,26 @@
             margin-top: 4rem;
         }
 
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links svg {
+            width: 24px;
+            height: 24px;
+        }
+
         .grid-2col {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -196,6 +236,43 @@
             border-radius: 5px;
         }
 
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 50%;
+            text-decoration: none;
+            display: none;
+            transition: background 0.3s;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
         @media (max-width: 400px) {
             .product-card {
                 padding: 1rem;
@@ -216,6 +293,7 @@
     <header role="banner">
         <nav role="navigation">
             <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo" loading="lazy">
+            <div class="hamburger">☰</div>
             <div class="nav-links">
                 <a href="#shop">Shop</a>
                 <a href="#about">About</a>
@@ -226,8 +304,8 @@
 
     <main role="main">
         <section class="hero">
-            <h1>Premium TCG Accessories</h1>
-            <p>Crafted with passion in Sweden</p>
+            <h1>Welcome to Hatake</h1>
+            <p>a Nordic TCG Brand</p>
             <a href="#shop" class="cta-button">View Products</a>
         </section>
 
@@ -413,14 +491,41 @@
     </main>
 
     <footer role="contentinfo">
-        <p>Join our community on <a href="https://discord.gg/Puq5ncSbjt" style="color: white; text-decoration: underline;">Discord</a></p>
-        <p style="margin-top: 1rem;">© 2025 Hatake TCG · Falköping, Sweden</p>
+        <div class="social-links">
+            <a href="https://discord.gg/Puq5ncSbjt">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.317 4.369a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.074.031c-.21.375-.395.807-.535 1.237a18.323 18.323 0 00-4.885 0c-.14-.43-.325-.862-.535-1.237a.074.074 0 00-.074-.031 19.791 19.791 0 00-4.885 1.515 20.154 20.154 0 00-6.083 14.215c.005.023.013.047.022.07a20.314 20.314 0 006.132 3.092.074.074 0 00.08-.021c.473-.353.885-.776 1.235-1.231a.074.074 0 00-.042-.104 13.856 13.856 0 01-1.975-.977.074.074 0 01-.008-.123c.133-.1.265-.201.397-.303.131-.101.264-.201.397-.301a.074.074 0 01.087-.009c1.446.672 3.013 1.134 4.674 1.134s3.228-.462 4.674-1.134a.074.074 0 01.087.009c.133.1.265.201.397.301.131.101.264.201.397.303a.074.074 0 01-.008.123 13.856 13.856 0 01-1.975.977.074.074 0 00-.042.104c.35.455.762.878 1.235 1.231a.074.074 0 00.08.021 20.314 20.314 0 006.132-3.092c.009-.023.017-.047.022-.07a20.154 20.154 0 00-6.083-14.215zM8.466 15.697c-.915 0-1.666-.746-1.666-1.665 0-.919.751-1.665 1.666-1.665.916 0 1.667.746 1.667 1.665 0 .919-.751 1.665-1.667 1.665zm7.068 0c-.915 0-1.666-.746-1.666-1.665 0-.919.751-1.665 1.666-1.665.916 0 1.667.746 1.667 1.665 0 .919-.751 1.665-1.667 1.665z"/>
+                </svg>
+                Discord
+            </a>
+            <a href="https://twitter.com/hataketcg">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                Twitter
+            </a>
+            <a href="https://instagram.com/hataketcg">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 12 3.204 0 3.584.012 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 1.691 4.771-1.691 4.771-4.771 1.691-4.85.07-4.85.012-4.85.012-3.204 0-3.584-.012-4.85-.07-3.252-.148-4.771-1.691-4.771-4.771 0-3.584.012-3.584.012-4.85.07-3.252.148-4.771-1.691-4.771-1.691-4.771 1.691-4.771 4.771-1.691 4.85-.07 4.85-.012 4.85-.012zm0 1.5c-3.204 0-3.584.012-4.85.07-2.678.122-4.165 1.609-4.287 4.287-.058 1.266-.07 1.646-.07 4.85s.012 3.584.07 4.85c.122 2.678 1.609 4.165 4.287 4.287 1.266.058 1.646.07 4.85.07s3.584-.012 4.85-.07c2.678-.122 4.165-1.609 4.287-4.287.058-1.266.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.122-2.678-1.609-4.165-4.287-4.287-1.266-.058-1.646-.07-4.85-.07zm0 5.838c-2.95 0-5.338 2.388-5.338 5.338s2.388 5.338 5.338 5.338 5.338-2.388 5.338-5.338-2.388-5.338-5.338-5.338zm0 8.676c-1.837 0-3.338-1.501-3.338-3.338s1.501-3.338 3.338-3.338 3.338 1.501 3.338 3.338-1.501 3.338-3.338 3.338zm6.406-11.414c0 .691-.559 1.25-1.25 1.25s-1.25-.559-1.25-1.25.559-1.25 1.25-1.25 1.25.559 1.25 1.25z"/>
+                </svg>
+                Instagram
+            </a>
+        </div>
+        <p>© 2025 Hatake TCG · Falköping, Sweden</p>
     </footer>
+
+    <a href="#" class="back-to-top" title="Back to Top">↑</a>
 
     <script>
         // Header scroll effect
         window.addEventListener('scroll', () => {
             document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+            document.querySelector('.back-to-top').style.display = window.scrollY > 200 ? 'block' : 'none';
+        });
+
+        // Hamburger menu toggle
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
         });
     </script>
 </body>
