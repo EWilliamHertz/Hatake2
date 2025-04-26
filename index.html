@@ -165,6 +165,7 @@
             transition: box-shadow 0.3s, border 0.3s;
             max-width: 100%;
             width: 300px;
+            cursor: pointer;
         }
 
         .product-card:hover {
@@ -186,7 +187,6 @@
             border-radius: 8px;
             margin-bottom: 1rem;
             transition: transform 0.3s ease, object-fit 0.3s ease, height 0.3s ease;
-            cursor: pointer;
         }
 
         .product-image:hover {
@@ -204,11 +204,21 @@
             margin: 1rem 0;
         }
 
+        .stock-indicator {
+            color: #e67e22;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .stock-indicator.sold-out {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 2rem 0;
-            overflow-x: auto;
         }
 
         th, td {
@@ -232,6 +242,23 @@
 
         .cta-button:hover {
             background: var(--accent);
+        }
+
+        .wishlist-button, .cart-button {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+            transition: background 0.3s;
+        }
+
+        .wishlist-button:hover, .cart-button:hover {
+            background: var(--primary);
         }
 
         .sticky-cta {
@@ -267,10 +294,33 @@
             align-items: center;
         }
 
-        .lightbox img {
+        .lightbox-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
             max-width: 90%;
             max-height: 80%;
+            overflow-y: auto;
+            text-align: center;
+        }
+
+        .lightbox img {
+            max-width: 100%;
+            max-height: 300px;
             border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .lightbox .video-placeholder {
+            background: #ddd;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+
+        .lightbox .description {
+            margin-top: 1rem;
+            text-align: left;
         }
 
         .lightbox .close {
@@ -337,6 +387,57 @@
             border-radius: 5px;
         }
 
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item select {
+            padding: 0.3rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .confirmation-message {
+            display: none;
+            background: #2ecc71;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .wishlist-section {
+            margin-bottom: 2rem;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+            gap: 2rem;
+            margin-top: 1rem;
+            justify-items: center;
+            justify-content: center;
+        }
+
+        .faq-section {
+            margin-top: 2rem;
+        }
+
+        .faq-section details {
+            margin-bottom: 1rem;
+        }
+
+        .faq-section summary {
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
         .back-to-top {
             position: fixed;
             bottom: 2rem;
@@ -383,6 +484,19 @@
                 font-size: 0.9rem;
                 bottom: 1.5rem;
                 left: 1.5rem;
+            }
+            .table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            table {
+                min-width: 600px;
+            }
+            th {
+                position: sticky;
+                top: 0;
+                background: white;
+                z-index: 10;
             }
         }
 
@@ -435,6 +549,13 @@
         <section id="shop">
             <h2>Our Products</h2>
             <p>Explore our curated collection of premium TCG accessories, designed with Nordic craftsmanship to elevate your gaming experience.</p>
+
+            <!-- Wishlist Section -->
+            <div class="wishlist-section">
+                <h3>Your Wishlist</h3>
+                <div class="wishlist-grid" id="wishlist-grid"></div>
+            </div>
+
             <div class="filter-bar">
                 <select id="category-filter">
                     <option value="all">All Categories</option>
@@ -451,53 +572,65 @@
                 </select>
             </div>
             <div class="product-grid">
-                <div class="product-card" data-category="Bag" data-price="30.00">
+                <div class="product-card" data-category="Bag" data-price="30.00" data-name="Duffel Bag" data-stock="25">
                     <img src="https://i.imgur.com/xV7ikH1.jpeg" alt="Black Hatake TCG Duffel Bag for tournaments" class="product-image" loading="lazy">
                     <h3>Duffel Bag</h3>
                     <p>47*28*55cm tournament-ready bag</p>
                     <div class="price">$30</div>
                     <p>Available July 2025</p>
-                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                    <div class="stock-indicator">Only 25 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Top-Loaders" data-price="3.00">
+                <div class="product-card" data-category="Top-Loaders" data-price="3.00" data-name="25x 35pt Top-Loaders" data-stock="2000">
                     <img src="https://placehold.co/300x200?text=35pt+Top-Loaders" alt="Pack of 25 Hatake TCG 35pt Top-Loaders for standard cards" class="product-image" loading="lazy">
-                    <h3>35pt Top-Loaders</h3>
+                    <h3>25x 35pt Top-Loaders</h3>
                     <p>Pack of 25 for standard cards</p>
                     <div class="price">$3.00</div>
                     <p>Available October 2025</p>
-                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                    <div class="stock-indicator">Only 2000 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Top-Loaders" data-price="3.50">
+                <div class="product-card" data-category="Top-Loaders" data-price="3.50" data-name="10x 130pt Top-Loaders" data-stock="2000">
                     <img src="https://placehold.co/300x200?text=130pt+Top-Loaders" alt="Pack of 10 Hatake TCG 130pt Top-Loaders for thicker cards" class="product-image" loading="lazy">
-                    <h3>130pt Top-Loaders</h3>
+                    <h3>10x 130pt Top-Loaders</h3>
                     <p>Pack of 10 for thicker cards</p>
                     <div class="price">$3.50</div>
                     <p>Available October 2025</p>
-                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                    <div class="stock-indicator">Only 2000 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Sleeves" data-price="8.90">
+                <div class="product-card" data-category="Sleeves" data-price="8.90" data-name="Matte Sleeves" data-stock="500">
                     <img src="https://placehold.co/300x200?text=Matte+Sleeves" alt="Pack of 100 Hatake TCG premium black matte sleeves" class="product-image" loading="lazy">
                     <h3>Matte Sleeves</h3>
                     <p>100 premium black sleeves (66x91mm)</p>
                     <div class="price">$8.90</div>
                     <p>Available October 2025</p>
-                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                    <div class="stock-indicator">Only 500 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Deckbox" data-price="30.00">
+                <div class="product-card" data-category="Deckbox" data-price="30.00" data-name="PU DeckBox" data-stock="100">
                     <img src="https://i.imgur.com/QFzheaZ.jpeg" alt="Hatake TCG PU DeckBox with magnetic closure" class="product-image" loading="lazy">
                     <h3>PU DeckBox</h3>
                     <p>160+ card capacity with magnetic closure</p>
                     <div class="price">$30.00</div>
                     <p>Available October 2025</p>
-                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                    <div class="stock-indicator">Only 100 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Binder" data-price="36.00">
+                <div class="product-card" data-category="Binder" data-price="36.00" data-name="480-Slot Binder" data-stock="50">
                     <img src="https://placehold.co/300x200?text=480-Slot+Binder" alt="Hatake TCG 480-slot zippered binder with side-loading pockets" class="product-image" loading="lazy">
                     <h3>480-Slot Binder</h3>
                     <p>Premium zippered binder with side-loading pockets</p>
                     <div class="price">$36.00</div>
                     <p>Available October 2025</p>
-                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                    <div class="stock-indicator">Only 50 units left for preorder</div>
+                    <button class="cart-button">Add to Cart</button>
+                    <button class="wishlist-button">Add to Wishlist</button>
                 </div>
             </div>
 
@@ -505,20 +638,17 @@
             <div id="preorder" class="preorder-form">
                 <h3>Preorder Now</h3>
                 <p>Reserve your Hatake TCG products before they launch!</p>
-                <form action="https://formspree.io/f/mjkwkodn" method="POST">
+                <div id="cart-items"></div>
+                <div id="cart-total" style="margin-top: 1rem; font-weight: bold;">Total: $0.00</div>
+                <form id="preorder-form" action="https://formspree.io/f/mjkwkodn" method="POST">
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
-                    <select name="product" required>
-                        <option value="" disabled selected>Select Product</option>
-                        <option value="Duffel Bag">Duffel Bag</option>
-                        <option value="35pt Top-Loaders">35pt Top-Loaders</option>
-                        <option value="130pt Top-Loaders">130pt Top-Loaders</option>
-                        <option value="Matte Sleeves">Matte Sleeves</option>
-                        <option value="PU DeckBox">PU DeckBox</option>
-                        <option value="480-Slot Binder">480-Slot Binder</option>
-                    </select>
+                    <textarea name="cart" id="cart-data" style="display: none;"></textarea>
                     <button type="submit" class="cta-button">Submit Preorder</button>
                 </form>
+                <div id="confirmation-message" class="confirmation-message">
+                    Thank you for your preorder! We’ll email you a confirmation soon.
+                </div>
             </div>
         </section>
 
@@ -578,54 +708,73 @@
             <div class="partner-card" style="margin-top: 2rem;">
                 <h3>Retail Partnerships</h3>
                 <p>Stock Hatake TCG products and enjoy competitive margins. Our premium accessories are designed to meet the needs of serious TCG players.</p>
-                <table>
-                    <tr>
-                        <th>Product</th>
-                        <th>Buy-in Price</th>
-                        <th>Sales Price</th>
-                        <th>Profit</th>
-                    </tr>
-                    <tr>
-                        <td>Matte Sleeves</td>
-                        <td>$4.80</td>
-                        <td>$8.90</td>
-                        <td>$4.10</td>
-                    </tr>
-                    <tr>
-                        <td>480-Slot Binder</td>
-                        <td>$22.00</td>
-                        <td>$36.00</td>
-                        <td>$14.00</td>
-                    </tr>
-                    <tr>
-                        <td>25x 35pt Top-Loaders</td>
-                        <td>$2.0</td>
-                        <td>$3.0</td>
-                        <td>$1.0</td>
-                    </tr>
-                    <tr>
-                        <td>10x 130pt Top-Loaders</td>
-                        <td>$1.6</td>
-                        <td>$3.3</td>
-                        <td>$1.7</td>
-                    </tr>
-                    <tr>
-                        <td>PU DeckBox</td>
-                        <td>$13.00</td>
-                        <td>$25.00</td>
-                        <td>$12.00</td>
-                    </tr>
-                    <tr>
-                        <td>Duffel Bag</td>
-                        <td>$17.00</td>
-                        <td>$30.00</td>
-                        <td>$13.00</td>
-                    </tr>
-                </table>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>Product</th>
+                            <th>Buy-in Price</th>
+                            <th>Sales Price</th>
+                            <th>Profit</th>
+                        </tr>
+                        <tr>
+                            <td>Matte Sleeves</td>
+                            <td>$4.80</td>
+                            <td>$8.90</td>
+                            <td>$4.10</td>
+                        </tr>
+                        <tr>
+                            <td>480-Slot Binder</td>
+                            <td>$22.00</td>
+                            <td>$36.00</td>
+                            <td>$14.00</td>
+                        </tr>
+                        <tr>
+                            <td>25x 35pt Top-Loaders</td>
+                            <td>$2.00</td>
+                            <td>$3.00</td>
+                            <td>$1.00</td>
+                        </tr>
+                        <tr>
+                            <td>10x 130pt Top-Loaders</td>
+                            <td>$1.60</td>
+                            <td>$3.30</td>
+                            <td>$1.70</td>
+                        </tr>
+                        <tr>
+                            <td>PU DeckBox</td>
+                            <td>$13.00</td>
+                            <td>$25.00</td>
+                            <td>$12.00</td>
+                        </tr>
+                        <tr>
+                            <td>Duffel Bag</td>
+                            <td>$17.00</td>
+                            <td>$30.00</td>
+                            <td>$13.00</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
                 <a href="mailto:ewilliamhe@gmail.com" class="cta-button">Contact Us to Partner</a>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h3>Frequently Asked Questions</h3>
+                <details>
+                    <summary>How to retail?</summary>
+                    <p>As a retailer, you can stock Hatake TCG products by ordering through our catalog. Check the "Retail Partnerships" table above for buy-in and sales prices. To place an order, copy the order template from our catalog, fill in your quantities, and email it to <a href="mailto:ewilliamhe@gmail.com">ewilliamhe@gmail.com</a>. You’re also entitled to samples—email us with the SKU of the products you’d like to test.</p>
+                </details>
+                <details>
+                    <summary>How can I get on-board the team?</summary>
+                    <p>We’re looking for passionate sales staff to join Hatake TCG. You’ll earn a percentage of net profits from sales to your clients while we handle shipping and logistics. To apply, email us at <a href="mailto:ewilliamhe@gmail.com">ewilliamhe@gmail.com</a> with your details and why you’d be a great fit for our team.</p>
+                </details>
+                <details>
+                    <summary>Can I get a spreadsheet document featuring an invoice?</summary>
+                    <p>Yes! Download our retailer catalog, which includes a template for placing orders, here: <a href="https://example.com/For_retailers_2.xlsx" download>Download Catalog</a>. (Note: Replace this link with the actual URL of the file.)</p>
+                </details>
             </div>
         </section>
     </main>
@@ -658,7 +807,13 @@
     <a href="#preorder" class="sticky-cta">Preorder Now</a>
     <div id="lightbox" class="lightbox">
         <span class="close">×</span>
-        <img src="" alt="Product Image">
+        <div class="lightbox-content">
+            <img src="" alt="Product Image">
+            <div class="video-placeholder">
+                <p>Product video coming soon!</p>
+            </div>
+            <div class="description" id="lightbox-description"></div>
+        </div>
     </div>
 
     <script>
@@ -724,30 +879,173 @@
             sortFilter.addEventListener('change', filterProducts);
         }
 
-        // Lightbox for mobile
-        const isMobile = window.innerWidth <= 768;
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
-        const closeLightbox = lightbox ? lightbox.querySelector('.close') : null;
+        // Cart functionality
+        let cart = [];
 
-        if (isMobile && lightbox && lightboxImg && closeLightbox) {
-            document.querySelectorAll('.product-image').forEach(img => {
-                img.addEventListener('click', () => {
-                    lightboxImg.src = img.src;
-                    lightbox.style.display = 'flex';
-                });
+        function updateCartDisplay() {
+            const cartItemsDiv = document.getElementById('cart-items');
+            const cartTotalDiv = document.getElementById('cart-total');
+            cartItemsDiv.innerHTML = '';
+
+            let total = 0;
+            cart.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <span>${item.name} - $${item.price}</span>
+                    <select onchange="updateCartItem(${index}, this.value)">
+                        ${[...Array(10).keys()].map(i => `<option value="${i + 1}" ${item.quantity == i + 1 ? 'selected' : ''}>${i + 1}</option>`).join('')}
+                    </select>
+                `;
+                cartItemsDiv.appendChild(itemDiv);
+                total += item.price * item.quantity;
             });
 
+            cartTotalDiv.textContent = `Total: $${total.toFixed(2)}`;
+            document.getElementById('cart-data').value = JSON.stringify(cart);
+        }
+
+        function updateCartItem(index, quantity) {
+            cart[index].quantity = parseInt(quantity);
+            updateCartDisplay();
+        }
+
+        document.querySelectorAll('.cart-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent lightbox from opening
+                const card = button.closest('.product-card');
+                const name = card.dataset.name;
+                const price = parseFloat(card.dataset.price);
+                const existingItem = cart.find(item => item.name === name);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+
+                updateCartDisplay();
+            });
+        });
+
+        // Wishlist functionality
+        let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+        function updateWishlistDisplay() {
+            const wishlistGrid = document.getElementById('wishlist-grid');
+            wishlistGrid.innerHTML = '';
+
+            wishlist.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="product-image" loading="lazy">
+                    <h3>${item.name}</h3>
+                    <p>${item.description}</p>
+                    <div class="price">$${item.price}</div>
+                    <button class="cart-button">Add to Cart</button>
+                `;
+                wishlistGrid.appendChild(card);
+
+                // Reattach cart button event listener for wishlist items
+                card.querySelector('.cart-button').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const existingItem = cart.find(cartItem => cartItem.name === item.name);
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        cart.push({ name: item.name, price: parseFloat(item.price), quantity: 1 });
+                    }
+                    updateCartDisplay();
+                });
+            });
+        }
+
+        document.querySelectorAll('.wishlist-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent lightbox from opening
+                const card = button.closest('.product-card');
+                const name = card.dataset.name;
+                const price = card.dataset.price;
+                const image = card.querySelector('.product-image').src;
+                const description = card.querySelector('p').textContent;
+
+                if (!wishlist.some(item => item.name === name)) {
+                    wishlist.push({ name, price, image, description });
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    updateWishlistDisplay();
+                }
+            });
+        });
+
+        // Initialize wishlist on page load
+        updateWishlistDisplay();
+
+        // Lightbox for product details
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const lightboxDescription = document.getElementById('lightbox-description');
+        const closeLightbox = lightbox.querySelector('.close');
+
+        const productDescriptions = {
+            'Duffel Bag': 'This tournament-ready duffel bag measures 47*28*55cm, offering ample space for your TCG gear. Crafted with durable materials, it features multiple compartments for decks, binders, and accessories, ensuring you’re always prepared for your next event.',
+            '25x 35pt Top-Loaders': 'A pack of 25 35pt top-loaders designed for standard-sized trading cards. These top-loaders provide excellent protection against bends and scratches, keeping your cards in pristine condition during storage or transport.',
+            '10x 130pt Top-Loaders': 'A pack of 10 130pt top-loaders, perfect for thicker cards or cards in sleeves. These sturdy top-loaders offer superior protection, ensuring your valuable cards remain safe and secure.',
+            'Matte Sleeves': 'A pack of 100 premium black matte sleeves (66x91mm), designed to fit standard-sized trading cards. These sleeves offer a non-glare finish, making them ideal for both casual play and competitive tournaments.',
+            'PU DeckBox': 'This PU DeckBox holds 160+ cards and features a magnetic closure for secure storage. Its multi-functional design includes compartments for dice and accessories, making it a must-have for any TCG player.',
+            '480-Slot Binder': 'A premium zippered binder with 480 slots and side-loading pockets. Designed to keep your collection organized and protected, this binder is perfect for showcasing your cards while ensuring they remain in mint condition.'
+        };
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const imgSrc = card.querySelector('.product-image').src;
+                const name = card.dataset.name;
+                lightboxImg.src = imgSrc;
+                lightboxDescription.textContent = productDescriptions[name] || 'No description available.';
+                lightbox.style.display = 'flex';
+            });
+        });
+
+        if (closeLightbox) {
             closeLightbox.addEventListener('click', () => {
                 lightbox.style.display = 'none';
             });
-
-            lightbox.addEventListener('click', (e) => {
-                if (e.target === lightbox) {
-                    lightbox.style.display = 'none';
-                }
-            });
         }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+
+        // Preorder form submission
+        const preorderForm = document.getElementById('preorder-form');
+        const confirmationMessage = document.getElementById('confirmation-message');
+
+        preorderForm.addEventListener('submit', (e) => {
+            // Allow Formspree to handle the submission
+            setTimeout(() => {
+                confirmationMessage.style.display = 'block';
+                cart = [];
+                updateCartDisplay();
+                preorderForm.reset();
+                setTimeout(() => {
+                    confirmationMessage.style.display = 'none';
+                }, 5000);
+            }, 1000);
+        });
+
+        // Check stock and update indicators
+        document.querySelectorAll('.product-card').forEach(card => {
+            const stock = parseInt(card.dataset.stock);
+            const stockIndicator = card.querySelector('.stock-indicator');
+            if (stock <= 0) {
+                stockIndicator.textContent = 'Preorder Sold Out';
+                stockIndicator.classList.add('sold-out');
+                card.querySelector('.cart-button').disabled = true;
+                card.querySelector('.wishlist-button').disabled = true;
+            }
+        });
     </script>
 </body>
 </html>
