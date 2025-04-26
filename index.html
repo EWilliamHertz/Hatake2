@@ -371,7 +371,7 @@
             font-weight: bold;
         }
 
-        .preorder-form {
+        .preorder-form, .partner-form {
             margin-top: 2rem;
             display: flex;
             flex-direction: column;
@@ -381,10 +381,15 @@
             margin-right: auto;
         }
 
-        .preorder-form input, .preorder-form select {
+        .preorder-form input, .preorder-form select, .partner-form input, .partner-form select, .partner-form textarea {
             padding: 0.8rem;
             border: 1px solid #ddd;
             border-radius: 5px;
+        }
+
+        .partner-form textarea {
+            resize: vertical;
+            min-height: 100px;
         }
 
         .cart-item {
@@ -703,6 +708,32 @@
                     <li>Join a growing brand in the TCG community</li>
                 </ul>
                 <p>Reach out to us at <a href="mailto:ewilliamhe@gmail.com" class="highlight">ewilliamhe@gmail.com</a> to learn more about this role.</p>
+
+                <!-- Partner Application Form -->
+                <div class="partner-form">
+                    <h4>Apply to Join Our Team</h4>
+                    <form id="partner-form" action="https://formspree.io/f/mjkwkodn" method="POST">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                        <input type="text" name="business_name" placeholder="Business Name (Optional)">
+                        <input type="text" name="location" placeholder="Location (e.g., City, Country)" required>
+                        <select name="partnership_type" required>
+                            <option value="" disabled selected>Select Partnership Type</option>
+                            <option value="Retail Partner">Retail Partner</option>
+                            <option value="Sales Staff">Sales Staff</option>
+                            <option value="Investor">Investor</option>
+                        </select>
+                        <textarea name="message" placeholder="Tell us about yourself and your interest in Hatake TCG" required></textarea>
+                        <label>
+                            <input type="checkbox" name="request_samples" value="yes">
+                            I’d like to request samples (please specify SKUs in your message).
+                        </label>
+                        <button type="submit" class="cta-button">Submit Application</button>
+                    </form>
+                    <div id="partner-confirmation-message" class="confirmation-message">
+                        Thank you for your application! We’ll get back to you soon.
+                    </div>
+                </div>
             </div>
 
             <div class="partner-card" style="margin-top: 2rem;">
@@ -760,7 +791,7 @@
                 <a href="mailto:ewilliamhe@gmail.com" class="cta-button">Contact Us to Partner</a>
             </div>
 
-            <!-- FAQ Section -->
+            <!-- Expanded FAQ Section -->
             <div class="faq-section">
                 <h3>Frequently Asked Questions</h3>
                 <details>
@@ -769,11 +800,27 @@
                 </details>
                 <details>
                     <summary>How can I get on-board the team?</summary>
-                    <p>We’re looking for passionate sales staff to join Hatake TCG. You’ll earn a percentage of net profits from sales to your clients while we handle shipping and logistics. To apply, email us at <a href="mailto:ewilliamhe@gmail.com">ewilliamhe@gmail.com</a> with your details and why you’d be a great fit for our team.</p>
+                    <p>We’re looking for passionate sales staff to join Hatake TCG. You’ll earn a percentage of net profits from sales to your clients while we handle shipping and logistics. To apply, use the "Apply to Join Our Team" form above or email us at <a href="mailto:ewilliamhe@gmail.com">ewilliamhe@gmail.com</a> with your details and why you’d be a great fit for our team.</p>
                 </details>
                 <details>
                     <summary>Can I get a spreadsheet document featuring an invoice?</summary>
                     <p>Yes! Download our retailer catalog, which includes a template for placing orders, here: <a href="https://docs.google.com/spreadsheets/d/12ZUSKc7exYyVhvOjGS0t4UcpgDVnxLcwSCVV2hsXGAA/edit?usp=drivesdk" download>Download Catalog</a>.</p>
+                </details>
+                <details>
+                    <summary>What are the shipping costs and timelines?</summary>
+                    <p>Shipping costs depend on your location and order size. For preorders, shipping will begin in October 2025 for most products (July 2025 for Duffel Bags). We’ll provide detailed shipping estimates in your preorder confirmation email. For retail orders, shipping costs will be calculated based on the order template you submit. Contact us at <a href="mailto:ewilliamhe@gmail.com">ewilliamhe@gmail.com</a> for more details.</p>
+                </details>
+                <details>
+                    <summary>Can I cancel or modify my preorder?</summary>
+                    <p>Yes, you can cancel or modify your preorder before shipping begins. Please email us at <a href="mailto:ewilliamhe@gmail.com">ewilliamhe@gmail.com</a> with your preorder details, and we’ll assist you. Note that modifications are subject to stock availability.</p>
+                </details>
+                <details>
+                    <summary>What products are available for sampling?</summary>
+                    <p>Retail partners are entitled to samples of our products. Available products include Matte Sleeves (SKU: 0.01), 480-Slot Binder (SKU: 0.02), 25x 35pt Top-Loaders (SKU: 0.031), 10x 130pt Top-Loaders (SKU: 0.032), PU DeckBox (SKU: 0.4), and Duffel Bag (SKU: 0.5). Use the "Apply to Join Our Team" form above and specify the SKUs you’d like to test in your message, or email us directly at <a href="mailto:ewilliamhe@gmail.com">ewilliamhe@gmail.com</a>.</p>
+                </details>
+                <details>
+                    <summary>What are the minimum order quantities for retailers?</summary>
+                    <p>Minimum Order Quantities (MOQ) vary by product. As a guideline, our catalog suggests starting with quantities like 20 Matte Sleeves, 10 480-Slot Binders, 100 35pt Top-Loaders, 50 130pt Top-Loaders, 20 PU DeckBoxes, or 5 Duffel Bags. For specific MOQs, please contact us at <a href="mailto:ewilliamhe@gmail.com">ewilliamhe@gmail.com</a> with your intended order details.</p>
                 </details>
             </div>
         </section>
@@ -1034,6 +1081,22 @@
                 }, 5000);
             }, 1000);
         });
+
+        // Partner form submission
+        const partnerForm = document.getElementById('partner-form');
+        const partnerConfirmationMessage = document.getElementById('partner-confirmation-message');
+
+        if (partnerForm) {
+            partnerForm.addEventListener('submit', (e) => {
+                setTimeout(() => {
+                    partnerConfirmationMessage.style.display = 'block';
+                    partnerForm.reset();
+                    setTimeout(() => {
+                        partnerConfirmationMessage.style.display = 'none';
+                    }, 5000);
+                }, 1000);
+            });
+        }
 
         // Check stock and update indicators
         document.querySelectorAll('.product-card').forEach(card => {
