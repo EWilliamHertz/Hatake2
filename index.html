@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hatake TCG - Premium TCG Accessories</title>
+    <meta name="description" content="Premium TCG accessories crafted in Sweden by Hatake TCG. Shop deck boxes, sleeves, and more for trading card games.">
+    <meta name="keywords" content="TCG accessories, Hatake TCG, card sleeves, deck boxes, Sweden">
+    <meta name="author" content="Hatake TCG">
+    <meta property="og:title" content="Hatake TCG - Premium TCG Accessories">
+    <meta property="og:description" content="Discover premium TCG accessories crafted with passion in Sweden.">
+    <meta property="og:image" content="https://i.imgur.com/fhUBtKm.png">
+    <meta property="og:url" content="https://ewilliamhertz.github.io/Hatake2/">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #C41E3A;
+            --accent: #4A90E2;
             --dark: #2D2D2D;
             --light: #F4F4F4;
         }
@@ -15,7 +24,16 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         header {
@@ -26,6 +44,12 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+
+        header.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         nav {
@@ -48,15 +72,15 @@
         .nav-links a {
             text-decoration: none;
             color: var(--dark);
-            font-weight: bold;
+            font-weight: 600;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
 
-        section {
+        main {
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 6rem auto 0;
@@ -65,7 +89,8 @@
         .hero {
             text-align: center;
             padding-top: 8rem;
-            background: var(--light);
+            background: linear-gradient(135deg, var(--light), #e0e0e0);
+            color: var(--dark);
         }
 
         .product-grid {
@@ -88,6 +113,11 @@
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image:hover {
+            transform: scale(1.05);
         }
 
         .price {
@@ -119,6 +149,11 @@
             text-decoration: none;
             display: inline-block;
             margin-top: 1rem;
+            transition: background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--accent);
         }
 
         footer {
@@ -139,12 +174,40 @@
             color: var(--primary);
             font-weight: bold;
         }
+
+        .preorder-form {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .preorder-form input, .preorder-form select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 400px) {
+            .product-card {
+                padding: 1rem;
+            }
+            .product-image {
+                height: 150px;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo">
+    <header role="banner">
+        <nav role="navigation">
+            <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo" loading="lazy">
             <div class="nav-links">
                 <a href="#shop">Shop</a>
                 <a href="#about">About</a>
@@ -153,161 +216,132 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>Premium TCG Accessories</h1>
-        <p>Crafted with passion in Sweden</p>
-        <a href="#shop" class="cta-button">View Products</a>
-    </section>
+    <main role="main">
+        <section class="hero">
+            <h1>Premium TCG Accessories</h1>
+            <p>Crafted with passion in Sweden</p>
+            <a href="#shop" class="cta-button">View Products</a>
+        </section>
 
-    <!-- Shop Section -->
-    <section id="shop">
-        <h2>Our Products</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="https://i.imgur.com/xV7ikH1.jpeg" alt="Duffel Bag" class="product-image">
-                <h3>Duffel Bag</h3>
-                <p>47*28*55cm tournament-ready bag</p>
-                <div class="price">$30</div>
-                <p>Available July 2025</p>
+        <!-- Shop Section -->
+        <section id="shop">
+            <h2>Our Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://i.imgur.com/xV7ikH1.jpeg" alt="Black Hatake TCG Duffel Bag for tournaments" class="product-image" loading="lazy">
+                    <h3>Duffel Bag</h3>
+                    <p>47*28*55cm tournament-ready bag</p>
+                    <div class="price">$30</div>
+                    <p>Available July 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/300x200?text=35pt+Top-Loaders" alt="Pack of 25 Hatake TCG 35pt Top-Loaders for standard cards" class="product-image" loading="lazy">
+                    <h3>35pt Top-Loaders</h3>
+                    <p>Pack of 25 for standard cards</p>
+                    <div class="price">$3.00</div>
+                    <p>Available October 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/300x200?text=130pt+Top-Loaders" alt="Pack of 10 Hatake TCG 130pt Top-Loaders for thicker cards" class="product-image" loading="lazy">
+                    <h3>130pt Top-Loaders</h3>
+                    <p>Pack of 10 for thicker cards</p>
+                    <div class="price">$3.50</div>
+                    <p>Available October 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/300x200?text=Matte+Sleeves" alt="Pack of 100 Hatake TCG premium black matte sleeves" class="product-image" loading="lazy">
+                    <h3>Matte Sleeves</h3>
+                    <p>100 premium black sleeves (66x91mm)</p>
+                    <div class="price">$8.90</div>
+                    <p>Available October 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://i.imgur.com/QFzheaZ.jpeg" alt="Hatake TCG PU DeckBox with magnetic closure" class="product-image" loading="lazy">
+                    <h3>PU DeckBox</h3>
+                    <p>160+ card capacity with magnetic closure</p>
+                    <div class="price">$30.00</div>
+                    <p>Available October 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://placehold.co/300x200?text=480-Slot+Binder" alt="Hatake TCG 480-slot zippered binder with side-loading pockets" class="product-image" loading="lazy">
+                    <h3>480-Slot Binder</h3>
+                    <p>Premium zippered binder with side-loading pockets</p>
+                    <div class="price">$36.00</div>
+                    <p>Available October 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
             </div>
-            <div class="product-card">
-                <img src="https://placehold.co/300x200?text=35pt+Top-Loaders" alt="35pt Top-Loaders" class="product-image">
-                <h3>35pt Top-Loaders</h3>
-                <p>Pack of 25 for standard cards</p>
-                <div class="price">$3.00</div>
-                <p>Available October 2025</p>
-            </div>
-            <div class="product-card">
-                <img src="https://placehold.co/300x200?text=130pt+Top-Loaders" alt="130pt Top-Loaders" class="product-image">
-                <h3>130pt Top-Loaders</h3>
-                <p>Pack of 10 for thicker cards</p>
-                <div class="price">$3.50</div>
-                <p>Available October 2025</p>
-            </div>
-            <div class="product-card">
-                <img src="https://placehold.co/300x200?text=Matte+Sleeves" alt="Matte Sleeves" class="product-image">
-                <h3>Matte Sleeves</h3>
-                <p>100 premium black sleeves (66x91mm)</p>
-                <div class="price">$8.90</div>
-                <p>Available October 2025</p>
-            </div>
-            <div class="product-card">
-                <img src="https://i.imgur.com/QFzheaZ.jpeg" alt="PU DeckBox" class="product-image">
-                <h3>PU DeckBox</h3>
-                <p>160+ card capacity with magnetic closure</p>
-                <div class="price">$30.00</div>
-                <p>Available October 2025</p>
-            </div>
-            <div class="product-card">
-                <img src="https://placehold.co/300x200?text=480-Slot+Binder" alt="480-Slot Binder" class="product-image">
-                <h3>480-Slot Binder</h3>
-                <p>Premium zippered binder with side-loading pockets</p>
-                <div class="price">$36.00</div>
-                <p>Available October 2025</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2>Our Story</h2>
-        <div class="grid-2col">
+            <!-- Preorder Form -->
+            <div id="preorder" class="preorder-form">
+                <h3>Preorder Now</h3>
+                <p>Reserve your Hatake TCG products before they launch!</p>
+                <form action="https://formspree.io/f/your-endpoint" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <select name="product" required>
+                        <option value="" disabled selected>Select Product</option>
+                        <option value="Duffel Bag">Duffel Bag</option>
+                        <option value="35pt Top-Loaders">35pt Top-Loaders</option>
+                        <option value="130pt Top-Loaders">130pt Top-Loaders</option>
+                        <option value="Matte Sleeves">Matte Sleeves</option>
+                        <option value="PU DeckBox">PU DeckBox</option>
+                        <option value="480-Slot Binder">480-Slot Binder</option>
+                    </select>
+                    <button type="submit" class="cta-button">Submit Preorder</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>Our Story</h2>
+            <div class="grid-2col">
+                <div class="partner-card">
+                    <h3>Founded in 2025</h3>
+                    <p>Hatake TCG was founded by Ernst-William Hertz and Mark Jensen, passionate TCG enthusiasts committed to creating premium, sustainable accessories. Our journey began in Falköping, Sweden, with a vision to revolutionize TCG gear while supporting Nordic industry.</p>
+                </div>
+                <div class="partner-card">
+                    <h3>Our Mission</h3>
+                    <p>We combine Swedish design with ethical manufacturing, currently partnering with a trusted Chinese supplier while working toward full Nordic production. Every product undergoes rigorous testing - our sleeves last 20% longer than competitors!</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">Why Choose Hatake?</h3>
+            <ul style="margin: 1rem 0 2rem 2rem;">
+                <li>Premium quality matching Dragon Shield/KMC</li>
+                <li>Unique Nordic-designed products</li>
+                <li>Ethical manufacturing practices</li>
+                <li>Supporting Swedish industry</li>
+                <li>Competitive retailer margins</li>
+            </ul>
+        </section>
+
+        <!-- Partner Section -->
+        <section id="partner">
+            <h2>Become a Partner</h2>
+            
             <div class="partner-card">
-                <h3>Founded in 2025</h3>
-                <p>Hatake TCG was founded by Ernst-William Hertz and Mark Jensen, passionate TCG enthusiasts committed to creating premium, sustainable accessories. Our journey began in Falköping, Sweden, with a vision to revolutionize TCG gear while supporting Nordic industry.</p>
+                <h3>Invest in Hatake TCG’s Future</h3>
+                <p>At Hatake TCG, we’re building a premium brand that resonates with trading card game enthusiasts worldwide. As a Swedish startup, we’ve already established a foothold in the TCG community with our high-quality accessories, and we’re ready to take the next step in our growth journey.</p>
+                <p>We’re excited to announce that Hatake TCG is valued at <span class="highlight">$30,000</span> as of 2030, reflecting our strong foundation and promising future. Join our vision with:</p>
+                <ul style="margin: 1rem 0 2rem 2rem;">
+                    <li><span class="highlight">1% equity</span> for just <span class="highlight">$300</span></li>
+                    <li>Flexible investment options for smaller budgets</li>
+                    <li>Partnerships in Ystad, Malmö, Falköping (SE), and Esbjerg (DK)</li>
+                </ul>
+                <p>By investing, you’ll join a network dedicated to elevating the TCG experience with potential for significant returns. Contact us at <a href="mailto:ewilliamhe@gmail.com" class="highlight">ewilliamhe@gmail.com</a> to explore this opportunity.</p>
             </div>
-            <div class="partner-card">
-                <h3>Our Mission</h3>
-                <p>We combine Swedish design with ethical manufacturing, currently partnering with a trusted Chinese supplier while working toward full Nordic production. Every product undergoes rigorous testing - our sleeves last 20% longer than competitors!</p>
-            </div>
-        </div>
 
-        <h3 style="margin-top: 3rem;">Why Choose Hatake?</h3>
-        <ul style="margin: 1rem 0 2rem 2rem;">
-            <li>Premium quality matching Dragon Shield/KMC</li>
-            <li>Unique Nordic-designed products</li>
-            <li>Ethical manufacturing practices</li>
-            <li>Supporting Swedish industry</li>
-            <li>Competitive retailer margins</li>
-        </ul>
-    </section>
+            <div class="partner-card" style="margin-top: 2rem;">
+                <h3>Join Our Team</h3>
+                <p>We’re seeking passionate sales staff to represent Hatake TCG. Earn a percentage of net profits from sales to your clients while we handle shipping and logistics.</p>
+                <ul style="margin: 1rem 0 2rem 2rem;">
+                    <li>andoli
 
-    <!-- Partner Section -->
-    <section id="partner">
-        <h2>Become a Partner</h2>
-        
-        <div class="partner-card">
-            <h3>Invest in Hatake TCG’s Future</h3>
-            <p>At Hatake TCG, we’re building a premium brand that resonates with trading card game enthusiasts worldwide. As a Swedish startup, we’ve already established a foothold in the TCG community with our high-quality accessories, and we’re ready to take the next step in our growth journey.</p>
-            <p>We’re excited to announce that Hatake TCG is valued at <span class="highlight">$30,000</span> as of 2030, reflecting our strong foundation and promising future. We’re now offering a unique opportunity for partners to invest in our vision. For just <span class="highlight">$300</span>, you can secure a <span class="highlight">1% stake</span> in the company—a straightforward entry point to join us on this exciting path. However, we’re open to negotiation and can offer smaller percentages for lower amounts to accommodate a range of investment levels.</p>
-            <p>Our existing partners in Ystad, Malmö, and Falköping in Sweden, as well as Esbjerg in Denmark, are already helping us expand our reach. By investing, you’ll become part of a growing network dedicated to elevating the TCG experience, with the potential for significant returns as we scale. If you’re passionate about the TCG industry and want to support a brand with a bright future, we’d love to discuss how you can become a partner.</p>
-            <p>Contact us at <a href="mailto:ewilliamhe@gmail.com" class="highlight">ewilliamhe@gmail.com</a> to explore this opportunity further.</p>
-        </div>
-
-        <div class="partner-card" style="margin-top: 2rem;">
-            <h3>Join Our Team</h3>
-            <p>As we grow, we’re looking for passionate sales staff to join our journey. If you’re interested in representing Hatake TCG and earning a percentage of the net profit from sales to your clients, we’d love to hear from you.</p>
-            <p>As a sales representative, you’ll be the primary contact for stores, earning commissions on all deliveries while our team handles shipping and logistics. This is a unique opportunity to be part of a growing brand in the TCG community.</p>
-            <p>Reach out to us at <a href="mailto:ewilliamhe@gmail.com" class="highlight">ewilliamhe@gmail.com</a> to learn more about this role.</p>
-        </div>
-
-        <div class="partner-card" style="margin-top: 2rem;">
-            <h3>Retail Partnerships</h3>
-            <p>Stock Hatake TCG products and enjoy competitive margins. Our premium accessories are designed to meet the needs of serious TCG players.</p>
-            <table>
-                <tr>
-                    <th>Product</th>
-                    <th>Buy-in Price</th>
-                    <th>Sales Price</th>
-                    <th>Profit</th>
-                </tr>
-                <tr>
-                    <td>Matte Sleeves</td>
-                    <td>$4.80</td>
-                    <td>$8.90</td>
-                    <td>$4.10</td>
-                </tr>
-                <tr>
-                    <td>480-Slot Binder</td>
-                    <td>$22.00</td>
-                    <td>$36.00</td>
-                    <td>$14.00</td>
-                </tr>
-                <tr>
-                    <td>35pt Top-Loaders</td>
-                    <td>$0.80</td>
-                    <td>$1.45</td>
-                    <td>$0.65</td>
-                </tr>
-                <tr>
-                    <td>130pt Top-Loaders</td>
-                    <td>$1.10</td>
-                    <td>$1.86</td>
-                    <td>$0.76</td>
-                </tr>
-                <tr>
-                    <td>PU DeckBox</td>
-                    <td>$13.00</td>
-                    <td>$25.00</td>
-                    <td>$12.00</td>
-                </tr>
-                <tr>
-                    <td>Duffel Bag</td>
-                    <td>$17.00</td>
-                    <td>$30.00</td>
-                    <td>$13.00</td>
-                </tr>
-            </table>
-        </div>
-
-        <div style="text-align: center; margin-top: 3rem;">
-            <a href="mailto:ewilliamhe@gmail.com" class="cta-button">Contact Us to Partner</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>Join our community on <a href="https://discord.gg/Puq5ncSbjt" style="color: white; text-decoration: underline;">Discord</a></p>
-        <p style="margin-top: 1rem;">© 2025 Hatake TCG · Falköping, Sweden</p>
-    </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9367a601a96db0cd',t:'MTc0NTY4Njk1My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+System: You are Grok 3 built by xAI.
