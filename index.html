@@ -68,6 +68,7 @@
         .nav-links {
             display: flex;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
@@ -79,6 +80,25 @@
 
         .nav-links a:hover {
             color: var(--accent);
+        }
+
+        .nav-links .home-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .nav-links .home-button:hover {
+            background: var(--accent);
+            color: white;
         }
 
         .hamburger {
@@ -126,9 +146,11 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
             gap: 2rem;
             margin-top: 2rem;
+            justify-items: center;
+            justify-content: center;
         }
 
         .product-card {
@@ -137,6 +159,8 @@
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: box-shadow 0.3s, border 0.3s;
+            max-width: 100%;
+            width: 300px;
         }
 
         .product-card:hover {
@@ -344,6 +368,12 @@
             .nav-links.active {
                 display: flex;
             }
+            .nav-links .home-button {
+                width: 36px;
+                height: 36px;
+                padding: 0.4rem;
+                font-size: 0.8rem;
+            }
             .sticky-cta {
                 padding: 0.6rem;
                 font-size: 0.9rem;
@@ -355,6 +385,7 @@
         @media (max-width: 400px) {
             .product-card {
                 padding: 1rem;
+                width: 100%;
             }
             .product-image {
                 height: 150px;
@@ -374,6 +405,7 @@
             <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo" loading="lazy">
             <div class="hamburger">☰</div>
             <div class="nav-links">
+                <a href="#" class="home-button">🏠</a>
                 <a href="#shop">Shop</a>
                 <a href="#about">About</a>
                 <a href="#partner">Partner</a>
@@ -603,7 +635,7 @@
             </a>
             <a href="https://instagram.com/hataketcg">
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 4.771 0 3.584.012 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 1.691 4.771-1.691 4.771-4.771 1.691-4.85.07-4.85.012-4.85.012-3.204 0-3.584-.012-4.85-.07-3.252-.148-4.771-1.691-4.771-4.771 0-3.584.012-3.584.012-4.85.07-3.252.148-4.771-1.691-4.771-1.691-4.771 1.691-4.771 4.771-1.691 4.85-.07 4.85-.012 4.85-.012zm0 1.5c-3.204 0-3.584.012-4.85.07-2.678.122-4.165 1.609-4.287 4.287-.058 1.266-.07 1.646-.07 4.85s.012 3.584.07 4.85c.122 2.678 1.609 4.165 4.287 4.287 1.266.058 1.646.07 4.85.07s3.584-.012 4.85-.07c2.678-.122 4.165-1.609 4.287-4.287.058-1.266.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.122-2.678-1.609-4.165-4.287-4.287-1.266-.058-1.646-.07-4.95-.07zm0 5.838c-2.95 0-5.338 2.388-5.338 5.338s2.388 5.338 5.338 5.338 5.338-2.388 5.338-5.338-2.388-5.338-5.338-5.338zm0 8.676c-1.837 0-3.338-1.501-3.338-3.338s1.501-3.338 3.338-3.338 3.338 1.501 3.338 3.338-1.501 3.338-3.338 3.338zm6.406-11.414c0 .691-.559 1.25-1.25 1.25s-1.25-.559-1.25-1.25.559-1.25 1.25-1.25 1.25.559 1.25 1.25z"/>
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 4.771 0 3.584.012 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 1.691 4.771-1.691 4.771-4.771 1.691-4.85.07-4.85.012-4.85.012-3.204 0-3.584-.012-4.85-.07-3.252-.148-4.771-1.691-4.771-4.771 0-3.584.012-3.584.012-4.85.07-3.252.148-4.771-1.691-4.771-1.691-4.771 1.691-4.771 4.771-1.691 4.85-.07 4.85-.012 4.85-.012zm0 1.5c-3.204 0-3.584.012-4.85.07-2.678.122-4.165 1.609-4.287 4.287-.058 1.266-.07 1.646-.07 4.85s.012 3.584.07 4.85c.122 2.678 1.609 4.165 4.287 4.287 1.266.058 1.646.07 4.85.07s3.584-.012 4.85-.07c2.678-.122 4.165-1.609 4.287-4.287.058-1.266.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.122-2.678-1.609-4.165-4.287-4.287-1.266-.058-1.646-.07-4.85-.07zm0 5.838c-2.95 0-5.338 2.388-5.338 5.338s2.388 5.338 5.338 5.338 5.338-2.388 5.338-5.338-2.388-5.338-5.338-5.338zm0 8.676c-1.837 0-3.338-1.501-3.338-3.338s1.501-3.338 3.338-3.338 3.338 1.501 3.338 3.338-1.501 3.338-3.338 3.338zm6.406-11.414c0 .691-.559 1.25-1.25 1.25s-1.25-.559-1.25-1.25.559-1.25 1.25-1.25 1.25.559 1.25 1.25z"/>
                 </svg>
                 Instagram
             </a>
@@ -665,8 +697,10 @@
             }
 
             // Update grid
+            productGrid.style.display = 'none'; // Force layout recalculation
             productGrid.innerHTML = '';
             filteredProducts.forEach(product => productGrid.appendChild(product));
+            productGrid.style.display = 'grid';
 
             // Show all products if no filters applied
             if (category === 'all' && sort === 'default') {
