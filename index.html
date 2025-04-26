@@ -27,13 +27,14 @@
             font-family: 'Open Sans', sans-serif;
         }
 
-        h1, h2, h3 {
-            font-family: 'Montserrat', sans-serif;
-        }
-
         body {
             font-size: 1.1rem;
             line-height: 1.6;
+            display: block;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
         }
 
         header {
@@ -91,6 +92,7 @@
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 6rem auto 0;
+            display: block;
         }
 
         .hero {
@@ -98,6 +100,7 @@
             padding-top: 6rem;
             background: none;
             color: var(--dark);
+            display: block;
         }
 
         .filter-bar {
@@ -281,7 +284,256 @@
 
         .grid-2col {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minh3>Retail Partnerships</h3>
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .preorder-form {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .preorder-form input, .preorder-form select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 50%;
+            text-decoration: none;
+            display: none;
+            transition: background 0.3s;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .sticky-cta {
+                padding: 0.6rem;
+                font-size: 0.9rem;
+                bottom: 1.5rem;
+                left: 1.5rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .product-card {
+                padding: 1rem;
+            }
+            .product-image {
+                height: 150px;
+            }
+            .product-image:hover {
+                max-height: 200px;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header role="banner">
+        <nav role="navigation">
+            <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo" loading="lazy">
+            <div class="hamburger">☰</div>
+            <div class="nav-links">
+                <a href="#shop">Shop</a>
+                <a href="#about">About</a>
+                <a href="#partner">Partner</a>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main">
+        <section class="hero">
+            <h1>Welcome to Hatake</h1>
+            <p>a Nordic TCG Brand</p>
+            <a href="#shop" class="cta-button">View Products</a>
+        </section>
+
+        <!-- Shop Section -->
+        <section id="shop">
+            <h2>Our Products</h2>
+            <p>Explore our curated collection of premium TCG accessories, designed with Nordic craftsmanship to elevate your gaming experience.</p>
+            <div class="filter-bar">
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="Bag">Bag</option>
+                    <option value="Top-Loaders">Top-Loaders</option>
+                    <option value="Sleeves">Sleeves</option>
+                    <option value="Deckbox">Deckbox</option>
+                    <option value="Binder">Binder</option>
+                </select>
+                <select id="sort-filter">
+                    <option value="default">Sort: Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                </select>
+            </div>
+            <div class="product-grid">
+                <div class="product-card" data-category="Bag" data-price="30.00">
+                    <img src="https://i.imgur.com/xV7ikH1.jpeg" alt="Black Hatake TCG Duffel Bag for tournaments" class="product-image" loading="lazy">
+                    <h3>Duffel Bag</h3>
+                    <p>47*28*55cm tournament-ready bag</p>
+                    <div class="price">$30</div>
+                    <p>Available July 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="product-card" data-category="Top-Loaders" data-price="3.00">
+                    <img src="https://placehold.co/300x200?text=35pt+Top-Loaders" alt="Pack of 25 Hatake TCG 35pt Top-Loaders for standard cards" class="product-image" loading="lazy">
+                    <h3>35pt Top-Loaders</h3>
+                    <p>Pack of 25 for standard cards</p>
+                    <div class="price">$3.00</div>
+                    <p>Available October 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="product-card" data-category="Top-Loaders" data-price="3.50">
+                    <img src="https://placehold.co/300x200?text=130pt+Top-Loaders" alt="Pack of 10 Hatake TCG 130pt Top-Loaders for thicker cards" class="product-image" loading="lazy">
+                    <h3>130pt Top-Loaders</h3>
+                    <p>Pack of 10 for thicker cards</p>
+                    <div class="price">$3.50</div>
+                    <p>Available October 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="product-card" data-category="Sleeves" data-price="8.90">
+                    <img src="https://placehold.co/300x200?text=Matte+Sleeves" alt="Pack of 100 Hatake TCG premium black matte sleeves" class="product-image" loading="lazy">
+                    <h3>Matte Sleeves</h3>
+                    <p>100 premium black sleeves (66x91mm)</p>
+                    <div class="price">$8.90</div>
+                    <p>Available October 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="product-card" data-category="Deckbox" data-price="30.00">
+                    <img src="https://i.imgur.com/QFzheaZ.jpeg" alt="Hatake TCG PU DeckBox with magnetic closure" class="product-image" loading="lazy">
+                    <h3>PU DeckBox</h3>
+                    <p>160+ card capacity with magnetic closure</p>
+                    <div class="price">$30.00</div>
+                    <p>Available October 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+                <div class="product-card" data-category="Binder" data-price="36.00">
+                    <img src="https://placehold.co/300x200?text=480-Slot+Binder" alt="Hatake TCG 480-slot zippered binder with side-loading pockets" class="product-image" loading="lazy">
+                    <h3>480-Slot Binder</h3>
+                    <p>Premium zippered binder with side-loading pockets</p>
+                    <div class="price">$36.00</div>
+                    <p>Available October 2025</p>
+                    <a href="#preorder" class="cta-button">Add to Cart</a>
+                </div>
+            </div>
+
+            <!-- Preorder Form -->
+            <div id="preorder" class="preorder-form">
+                <h3>Preorder Now</h3>
+                <p>Reserve your Hatake TCG products before they launch!</p>
+                <form action="https://formspree.io/f/mjkwkodn" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <select name="product" required>
+                        <option value="" disabled selected>Select Product</option>
+                        <option value="Duffel Bag">Duffel Bag</option>
+                        <option value="35pt Top-Loaders">35pt Top-Loaders</option>
+                        <option value="130pt Top-Loaders">130pt Top-Loaders</option>
+                        <option value="Matte Sleeves">Matte Sleeves</option>
+                        <option value="PU DeckBox">PU DeckBox</option>
+                        <option value="480-Slot Binder">480-Slot Binder</option>
+                    </select>
+                    <button type="submit" class="cta-button">Submit Preorder</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>Our Story</h2>
+            <div class="grid-2col">
+                <div class="partner-card">
+                    <h3>Founded in 2025</h3>
+                    <p>Hatake TCG was founded by Ernst-William Hertz and Mark Jensen, passionate TCG enthusiasts committed to creating premium, sustainable accessories. Our journey began in Falköping, Sweden, with a vision to revolutionize TCG gear while supporting Nordic industry.</p>
+                </div>
+                <div class="partner-card">
+                    <h3>Our Mission</h3>
+                    <p>We combine Swedish design with ethical manufacturing, currently partnering with a trusted Chinese supplier while working toward full Nordic production.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 3rem;">Why Choose Hatake?</h3>
+            <ul style="margin: 1rem 0 2rem 2rem;">
+                <li>Premium quality matching Dragon Shield/KMC</li>
+                <li>Unique Nordic-designed products</li>
+                <li>Ethical manufacturing practices</li>
+                <li>Supporting Swedish industry</li>
+                <li>Competitive retailer margins</li>
+            </ul>
+        </section>
+
+        <!-- Partner Section -->
+        <section id="partner">
+            <h2>Become a Partner</h2>
+            
+            <div class="partner-card">
+                <h3>Invest in Hatake TCG’s Future</h3>
+                <p>At Hatake TCG, we’re building a premium brand that resonates with trading card game enthusiasts worldwide.</p>
+                <p>As a Swedish startup, we’ve already established a foothold in the TCG community with our high-quality accessories, and we’re ready to take the next step in our growth journey.</p>
+                <p>We’re excited to announce that Hatake TCG is valued at <span class="highlight">$30,000</span> as of 2030, reflecting our strong foundation and promising future.</p>
+                <p>Join our vision with:</p>
+                <ul style="margin: 1rem 0 2rem 2rem;">
+                    <li><span class="highlight">1% equity</span> for just <span class="highlight">$300</span></li>
+                    <li>Flexible investment options for smaller budgets</li>
+                    <li>Partnerships in Ystad, Malmö, Falköping (SE), and Esbjerg (DK)</li>
+                </ul>
+                <p>By investing, you’ll join a network dedicated to elevating the TCG experience with potential for significant returns. Contact us at <a href="mailto:ewilliamhe@gmail.com" class="highlight">ewilliamhe@gmail.com</a> to explore this opportunity.</p>
+            </div>
+
+            <div class="partner-card" style="margin-top: 2rem;">
+                <h3>Join Our Team</h3>
+                <p>We’re seeking passionate sales staff to represent Hatake TCG. Earn a percentage of net profits from sales to your clients while we handle shipping and logistics.</p>
+                <ul style="margin: 1rem 0 2rem 2rem;">
+                    <li>Be the primary contact for stores</li>
+                    <li>Earn commissions on all deliveries</li>
+                    <li>Join a growing brand in the TCG community</li>
+                </ul>
+                <p>Reach out to us at <a href="mailto:ewilliamhe@gmail.com" class="highlight">ewilliamhe@gmail.com</a> to learn more about this role.</p>
+            </div>
+
+            <div class="partner-card" style="margin-top: 2rem;">
+                <h3>Retail Partnerships</h3>
                 <p>Stock Hatake TCG products and enjoy competitive margins. Our premium accessories are designed to meet the needs of serious TCG players.</p>
                 <table>
                     <tr>
@@ -351,7 +603,7 @@
             </a>
             <a href="https://instagram.com/hataketcg">
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 4.771 0 3.584.012 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 1.691 4.771-1.691 4.771-4.771 1.691-4.85.07-4.85.012-4.85.012-3.204 0-3.584-.012-4.85-.07-3.252-.148-4.771-1.691-4.771-4.771 0-3.584.012-3.584.012-4.85.07-3.252.148-4.771-1.691-4.771-1.691-4.771 1.691-4.771 4.771-1.691 4.85-.07 4.85-.012 4.85-.012zm0 1.5c-3.204 0-3.584.012-4.85.07-2.678.122-4.165 1.609-4.287 4.287-.058 1.266-.07 1.646-.07 4.85s.012 3.584.07 4.85c.122 2.678 1.609 4.165 4.287 4.287 1.266.058 1.646.07 4.85.07s3.584-.012 4.85-.07c2.678-.122 4.165-1.609 4.287-4.287.058-1.266.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.122-2.678-1.609-4.165-4.287-4.287-1.266-.058-1.646-.07-4.85-.07zm0 5.838c-2.95 0-5.338 2.388-5.338 5.338s2.388 5.338 5.338 5.338 5.338-2.388 5.338-5.338-2.388-5.338-5.338-5.338zm0 8.676c-1.837 0-3.338-1.501-3.338-3.338s1.501-3.338 3.338-3.338 3.338 1.501 3.338 3.338-1.501 3.338-3.338 3.338zm6.406-11.414c0 .691-.559 1.25-1.25 1.25s-1.25-.559-1.25-1.25.559-1.25 1.25-1.25 1.25.559 1.25 1.25z"/>
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 4.771 0 3.584.012 3.584.012 4.85.07 3.252.148 4.771 1.691 4.771 1.691 4.771-1.691 4.771-4.771 1.691-4.85.07-4.85.012-4.85.012-3.204 0-3.584-.012-4.85-.07-3.252-.148-4.771-1.691-4.771-4.771 0-3.584.012-3.584.012-4.85.07-3.252.148-4.771-1.691-4.771-1.691-4.771 1.691-4.771 4.771-1.691 4.85-.07 4.85-.012 4.85-.012zm0 1.5c-3.204 0-3.584.012-4.85.07-2.678.122-4.165 1.609-4.287 4.287-.058 1.266-.07 1.646-.07 4.85s.012 3.584.07 4.85c.122 2.678 1.609 4.165 4.287 4.287 1.266.058 1.646.07 4.85.07s3.584-.012 4.85-.07c2.678-.122 4.165-1.609 4.287-4.287.058-1.266.07-1.646.07-4.85s-.012-3.584-.07-4.85c-.122-2.678-1.609-4.165-4.287-4.287-1.266-.058-1.646-.07-4.95-.07zm0 5.838c-2.95 0-5.338 2.388-5.338 5.338s2.388 5.338 5.338 5.338 5.338-2.388 5.338-5.338-2.388-5.338-5.338-5.338zm0 8.676c-1.837 0-3.338-1.501-3.338-3.338s1.501-3.338 3.338-3.338 3.338 1.501 3.338 3.338-1.501 3.338-3.338 3.338zm6.406-11.414c0 .691-.559 1.25-1.25 1.25s-1.25-.559-1.25-1.25.559-1.25 1.25-1.25 1.25.559 1.25 1.25z"/>
                 </svg>
                 Instagram
             </a>
@@ -370,14 +622,20 @@
         // Header scroll effect
         window.addEventListener('scroll', () => {
             document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
-            document.querySelector('.back-to-top').style.display = window.scrollY > 200 ? 'block' : 'none';
-            document.querySelector('.sticky-cta').style.display = window.scrollY > 200 ? 'block' : 'none';
+            const backToTop = document.querySelector('.back-to-top');
+            const stickyCta = document.querySelector('.sticky-cta');
+            if (backToTop) backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
+            if (stickyCta) stickyCta.style.display = window.scrollY > 200 ? 'block' : 'none';
         });
 
         // Hamburger menu toggle
-        document.querySelector('.hamburger').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
 
         // Product filtering
         const categoryFilter = document.getElementById('category-filter');
@@ -385,22 +643,21 @@
         const productGrid = document.querySelector('.product-grid');
         const products = Array.from(document.querySelectorAll('.product-card'));
 
-        categoryFilter.addEventListener('change', filterProducts);
-        sortFilter.addEventListener('change', filterProducts);
-
         function filterProducts() {
+            if (!productGrid || !products.length) return;
+
             let filteredProducts = products;
 
             // Filter by category
-            const category = categoryFilter.value;
+            const category = categoryFilter ? categoryFilter.value : 'all';
             if (category !== 'all') {
                 filteredProducts = products.filter(product => product.dataset.category === category);
             }
 
             // Sort by price
-            const sort = sortFilter.value;
+            const sort = sortFilter ? sortFilter.value : 'default';
             if (sort !== 'default') {
-                filteredProducts.sort((a, b) => {
+                filteredProducts = filteredProducts.sort((a, b) => {
                     const priceA = parseFloat(a.dataset.price);
                     const priceB = parseFloat(b.dataset.price);
                     return sort === 'price-low' ? priceA - priceB : priceB - priceA;
@@ -417,13 +674,18 @@
             }
         }
 
+        if (categoryFilter && sortFilter) {
+            categoryFilter.addEventListener('change', filterProducts);
+            sortFilter.addEventListener('change', filterProducts);
+        }
+
         // Lightbox for mobile
         const isMobile = window.innerWidth <= 768;
         const lightbox = document.getElementById('lightbox');
-        const lightboxImg = lightbox.querySelector('img');
-        const closeLightbox = lightbox.querySelector('.close');
+        const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
+        const closeLightbox = lightbox ? lightbox.querySelector('.close') : null;
 
-        if (isMobile) {
+        if (isMobile && lightbox && lightboxImg && closeLightbox) {
             document.querySelectorAll('.product-image').forEach(img => {
                 img.addEventListener('click', () => {
                     lightboxImg.src = img.src;
