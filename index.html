@@ -166,6 +166,7 @@
             max-width: 100%;
             width: 300px;
             cursor: pointer;
+            position: relative; /* For positioning the delete button */
         }
 
         .product-card:hover {
@@ -259,6 +260,27 @@
 
         .wishlist-button:hover, .cart-button:hover {
             background: var(--primary);
+        }
+
+        /* New Delete Button Style */
+        .delete-button {
+            background: #e74c3c; /* Red color to indicate deletion */
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 0.5rem;
+            transition: background 0.3s;
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+        }
+
+        .delete-button:hover {
+            background: #c0392b; /* Darker red on hover */
         }
 
         .sticky-cta {
@@ -523,20 +545,20 @@
     </style>
 </head>
 <body>
-<header role="banner">
-    <nav role="navigation">
-        <a href="#" title="Back to Top">
-            <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo" loading="lazy">
-        </a>
-        <div class="hamburger">☰</div>
-        <div class="nav-links">
-            <a href="#" class="home-button">🏠</a>
-            <a href="#shop">Shop</a>
-            <a href="#about">About</a>
-            <a href="#partner">Partner</a>
-        </div>
-    </nav>
-</header>
+    <header role="banner">
+        <nav role="navigation">
+            <a href="#" title="Back to Top">
+                <img src="https://i.imgur.com/fhUBtKm.png" alt="Hatake TCG Logo" class="logo" loading="lazy">
+            </a>
+            <div class="hamburger">☰</div>
+            <div class="nav-links">
+                <a href="#" class="home-button">🏠</a>
+                <a href="#shop">Shop</a>
+                <a href="#about">About</a>
+                <a href="#partner">Partner</a>
+            </div>
+        </nav>
+    </header>
 
     <main role="main">
         <section class="hero">
@@ -984,7 +1006,7 @@
             const wishlistGrid = document.getElementById('wishlist-grid');
             wishlistGrid.innerHTML = '';
 
-            wishlist.forEach(item => {
+            wishlist.forEach((item, index) => {
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.innerHTML = `
@@ -993,6 +1015,7 @@
                     <p>${item.description}</p>
                     <div class="price">$${item.price}</div>
                     <button class="cart-button">Add to Cart</button>
+                    <button class="delete-button" data-index="${index}">Delete</button>
                 `;
                 wishlistGrid.appendChild(card);
 
@@ -1005,7 +1028,20 @@
                     } else {
                         cart.push({ name: item.name, price: parseFloat(item.price), quantity: 1 });
                     }
+                    // Remove from wishlist after adding to cart
+                    wishlist = wishlist.filter(wishItem => wishItem.name !== item.name);
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    updateWishlistDisplay();
                     updateCartDisplay();
+                });
+
+                // Add event listener for delete button
+                card.querySelector('.delete-button').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const index = parseInt(e.target.dataset.index);
+                    wishlist.splice(index, 1); // Remove item at the specific index
+                    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                    updateWishlistDisplay();
                 });
             });
         }
