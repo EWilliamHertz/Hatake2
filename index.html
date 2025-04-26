@@ -113,11 +113,16 @@
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 1rem;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, object-fit 0.3s ease, height 0.3s ease;
         }
 
         .product-image:hover {
+            object-fit: contain;
+            height: auto;
+            max-height: 250px;
             transform: scale(1.05);
+            background: #f9f9f9;
+            padding: 0.5rem;
         }
 
         .price {
@@ -197,6 +202,9 @@
             }
             .product-image {
                 height: 150px;
+            }
+            .product-image:hover {
+                max-height: 200px;
             }
             .nav-links {
                 gap: 1rem;
@@ -342,6 +350,78 @@
                 <h3>Join Our Team</h3>
                 <p>We’re seeking passionate sales staff to represent Hatake TCG. Earn a percentage of net profits from sales to your clients while we handle shipping and logistics.</p>
                 <ul style="margin: 1rem 0 2rem 2rem;">
-                    <li>andoli
+                    <li>Be the primary contact for stores</li>
+                    <li>Earn commissions on all deliveries</li>
+                    <li>Join a growing brand in the TCG community</li>
+                </ul>
+                <p>Reach out to us at <a href="mailto:ewilliamhe@gmail.com" class="highlight">ewilliamhe@gmail.com</a> to learn more about this role.</p>
+            </div>
 
-System: You are Grok 3 built by xAI.
+            <div class="partner-card" style="margin-top: 2rem;">
+                <h3>Retail Partnerships</h3>
+                <p>Stock Hatake TCG products and enjoy competitive margins. Our premium accessories are designed to meet the needs of serious TCG players.</p>
+                <table>
+                    <tr>
+                        <th>Product</th>
+                        <th>Buy-in Price</th>
+                        <th>Sales Price</th>
+                        <th>Profit</th>
+                    </tr>
+                    <tr>
+                        <td>Matte Sleeves</td>
+                        <td>$4.80</td>
+                        <td>$8.90</td>
+                        <td>$4.10</td>
+                    </tr>
+                    <tr>
+                        <td>480-Slot Binder</td>
+                        <td>$22.00</td>
+                        <td>$36.00</td>
+                        <td>$14.00</td>
+                    </tr>
+                    <tr>
+                        <td>35pt Top-Loaders</td>
+                        <td>$0.80</td>
+                        <td>$1.45</td>
+                        <td>$0.65</td>
+                    </tr>
+                    <tr>
+                        <td>130pt Top-Loaders</td>
+                        <td>$1.10</td>
+                        <td>$1.86</td>
+                        <td>$0.76</td>
+                    </tr>
+                    <tr>
+                        <td>PU DeckBox</td>
+                        <td>$13.00</td>
+                        <td>$25.00</td>
+                        <td>$12.00</td>
+                    </tr>
+                    <tr>
+                        <td>Duffel Bag</td>
+                        <td>$17.00</td>
+                        <td>$30.00</td>
+                        <td>$13.00</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="mailto:ewilliamhe@gmail.com" class="cta-button">Contact Us to Partner</a>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo">
+        <p>Join our community on <a href="https://discord.gg/Puq5ncSbjt" style="color: white; text-decoration: underline;">Discord</a></p>
+        <p style="margin-top: 1rem;">© 2025 Hatake TCG · Falköping, Sweden</p>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.querySelector('header').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>
