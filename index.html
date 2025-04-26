@@ -65,7 +65,7 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1rem; /* Space between logo and dark mode toggle */
+            gap: 1rem;
         }
 
         .logo {
@@ -224,6 +224,12 @@
             font-weight: bold;
         }
 
+        .countdown-timer {
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+            color: var(--dark);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -353,6 +359,10 @@
 
         body.dark-mode .nav-links a,
         body.dark-mode .hamburger {
+            color: #f4f4f4;
+        }
+
+        body.dark-mode .countdown-timer {
             color: #f4f4f4;
         }
 
@@ -702,62 +712,62 @@
                 </select>
             </div>
             <div class="product-grid">
-                <div class="product-card" data-category="Bag" data-price="30.00" data-name="Duffel Bag" data-stock="22">
+                <div class="product-card" data-category="Bag" data-price="30.00" data-name="Duffel Bag" data-stock="22" data-release-date="2025-07-15">
                     <img src="https://i.imgur.com/xV7ikH1.jpeg" alt="Black Hatake TCG Duffel Bag for tournaments" class="product-image" loading="lazy">
                     <h3>Duffel Bag</h3>
                     <p>47*28*55cm tournament-ready bag</p>
                     <div class="price">$30</div>
-                    <p>Available July 2025</p>
+                    <div class="countdown-timer" id="timer-Duffel Bag"></div>
                     <div class="stock-indicator">Only 22 units left for preorder</div>
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Top-Loaders" data-price="3.00" data-name="25x 35pt Top-Loaders" data-stock="80">
+                <div class="product-card" data-category="Top-Loaders" data-price="3.00" data-name="25x 35pt Top-Loaders" data-stock="80" data-release-date="2025-10-15">
                     <img src="https://placehold.co/300x200?text=35pt+Top-Loaders" alt="Pack of 25 Hatake TCG 35pt Top-Loaders for standard cards" class="product-image" loading="lazy">
                     <h3>25x 35pt Top-Loaders</h3>
                     <p>Pack of 25 for standard cards</p>
                     <div class="price">$3.00</div>
-                    <p>Available October 2025</p>
+                    <div class="countdown-timer" id="timer-25x 35pt Top-Loaders"></div>
                     <div class="stock-indicator">Only 80 units left for preorder</div>
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Top-Loaders" data-price="3.50" data-name="10x 130pt Top-Loaders" data-stock="200">
+                <div class="product-card" data-category="Top-Loaders" data-price="3.50" data-name="10x 130pt Top-Loaders" data-stock="200" data-release-date="2025-10-15">
                     <img src="https://placehold.co/300x200?text=130pt+Top-Loaders" alt="Pack of 10 Hatake TCG 130pt Top-Loaders for thicker cards" class="product-image" loading="lazy">
                     <h3>10x 130pt Top-Loaders</h3>
                     <p>Pack of 10 for thicker cards</p>
                     <div class="price">$3.50</div>
-                    <p>Available October 2025</p>
+                    <div class="countdown-timer" id="timer-10x 130pt Top-Loaders"></div>
                     <div class="stock-indicator">Only 200 units left for preorder</div>
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Sleeves" data-price="8.90" data-name="Matte Sleeves" data-stock="500">
+                <div class="product-card" data-category="Sleeves" data-price="8.90" data-name="Matte Sleeves" data-stock="500" data-release-date="2025-10-15">
                     <img src="https://placehold.co/300x200?text=Matte+Sleeves" alt="Pack of 100 Hatake TCG premium black matte sleeves" class="product-image" loading="lazy">
                     <h3>Matte Sleeves</h3>
                     <p>100 premium black sleeves (66x91mm)</p>
                     <div class="price">$8.90</div>
-                    <p>Available October 2025</p>
+                    <div class="countdown-timer" id="timer-Matte Sleeves"></div>
                     <div class="stock-indicator">Only 500 units left for preorder</div>
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Deckbox" data-price="30.00" data-name="PU DeckBox" data-stock="100">
+                <div class="product-card" data-category="Deckbox" data-price="30.00" data-name="PU DeckBox" data-stock="100" data-release-date="2025-10-15">
                     <img src="https://i.imgur.com/QFzheaZ.jpeg" alt="Hatake TCG PU DeckBox with magnetic closure" class="product-image" loading="lazy">
                     <h3>PU DeckBox</h3>
                     <p>160+ card capacity with magnetic closure</p>
                     <div class="price">$30.00</div>
-                    <p>Available October 2025</p>
+                    <div class="countdown-timer" id="timer-PU DeckBox"></div>
                     <div class="stock-indicator">Only 100 units left for preorder</div>
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
                 </div>
-                <div class="product-card" data-category="Binder" data-price="36.00" data-name="480-Slot Binder" data-stock="50">
+                <div class="product-card" data-category="Binder" data-price="36.00" data-name="480-Slot Binder" data-stock="50" data-release-date="2025-10-15">
                     <img src="https://placehold.co/300x200?text=480-Slot+Binder" alt="Hatake TCG 480-slot zippered binder with side-loading pockets" class="product-image" loading="lazy">
                     <h3>480-Slot Binder</h3>
                     <p>Premium zippered binder with side-loading pockets</p>
                     <div class="price">$36.00</div>
-                    <p>Available October 2025</p>
+                    <div class="countdown-timer" id="timer-480-Slot Binder"></div>
                     <div class="stock-indicator">Only 50 units left for preorder</div>
                     <button class="cart-button">Add to Cart</button>
                     <button class="wishlist-button">Add to Wishlist</button>
@@ -928,7 +938,7 @@
                 </details>
                 <details>
                     <summary>What are the shipping costs and timelines?</summary>
-                    <p>Shipping costs depend on your location and order size. For preorders, shipping will begin in October 2025 for most products (July 2025 for Duffel Bags). We’ll provide detailed shipping estimates in your preorder confirmation email. For retail orders, shipping costs will be calculated based on the order template you submit. Contact us at <a href="mailto:ewilliamhe@gmail.com">ewilliamhe@gmail.com</a> for more details.</p>
+                    <p>Shipping costs depend on your location and order size. For preorders, shipping will begin when the countdown timers reach zero (July 15, 2025 for Duffel Bags, October 15, 2025 for other products). We’ll provide detailed shipping estimates in your preorder confirmation email. For retail orders, shipping costs will be calculated based on the order template you submit. Contact us at <a href="mailto:ewilliamhe@gmail.com">ewilliamhe@gmail.com</a> for more details.</p>
                 </details>
                 <details>
                     <summary>Can I cancel or modify my preorder?</summary>
@@ -1191,6 +1201,35 @@
         });
 
         updateWishlistDisplay();
+
+        function startCountdown() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                const releaseDate = new Date(card.dataset.releaseDate + 'T00:00:00');
+                const timerElement = card.querySelector('.countdown-timer');
+
+                function updateTimer() {
+                    const now = new Date();
+                    const timeDiff = releaseDate - now;
+
+                    if (timeDiff <= 0) {
+                        timerElement.textContent = 'Available Now!';
+                        return;
+                    }
+
+                    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+                    timerElement.textContent = `Available in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+                }
+
+                updateTimer();
+                setInterval(updateTimer, 1000);
+            });
+        }
+
+        startCountdown();
 
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = lightbox.querySelector('img');
