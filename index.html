@@ -39,14 +39,14 @@
 
         header {
             background: white;
-            padding: 0.5rem; /* Reduced from 1rem to make the header shorter */
+            padding: 0.5rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
             transition: background 0.3s, box-shadow 0.3s;
-            height: 60px; /* Set a fixed height to tightly wrap the logo */
+            height: 70px; /* Increased from 60px to ensure the logo is fully visible */
         }
 
         header.scrolled {
@@ -61,7 +61,7 @@
             justify-content: space-between;
             align-items: center;
             position: relative;
-            height: 100%; /* Ensure nav fills the header height */
+            height: 100%;
         }
 
         .logo-container {
@@ -120,7 +120,7 @@
         main {
             padding: 4rem 2rem;
             max-width: 1200px;
-            margin: 4rem auto 0; /* Reduced from 6rem to account for smaller header */
+            margin: 4.5rem auto 0; /* Increased from 4rem to account for taller header */
             display: block;
         }
 
