@@ -46,7 +46,7 @@
             top: 0;
             z-index: 1000;
             transition: background 0.3s, box-shadow 0.3s;
-            height: 110px; /* Set to 110px as requested */
+            height: 110px;
         }
 
         header.scrolled {
@@ -120,7 +120,7 @@
         main {
             padding: 4rem 2rem;
             max-width: 1200px;
-            margin: 6.5rem auto 0; /* Adjusted to account for taller header */
+            margin: 6.5rem auto 0;
             display: block;
         }
 
@@ -158,7 +158,7 @@
             border-color: var(--accent);
         }
 
-        .product-grid {
+        .product-grid, .event-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
             gap: 2rem;
@@ -167,7 +167,7 @@
             justify-content: center;
         }
 
-        .product-card {
+        .product-card, .event-card {
             background: white;
             padding: 1.5rem;
             border-radius: 8px;
@@ -179,7 +179,7 @@
             position: relative;
         }
 
-        .product-card:hover {
+        .product-card:hover, .event-card:hover {
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             border: 1px solid var(--accent);
         }
@@ -191,7 +191,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .product-image {
+        .product-image, .event-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
@@ -200,7 +200,7 @@
             transition: transform 0.3s ease, object-fit 0.3s ease, height 0.3s ease;
         }
 
-        .product-image:hover {
+        .product-image:hover, .event-image:hover {
             object-fit: contain;
             height: auto;
             max-height: 250px;
@@ -289,7 +289,7 @@
             display: inline-block;
             margin-top: 0.5rem;
             transition: background 0.3s;
-            position dise: absolute;
+            position: absolute;
             bottom: 1rem;
             right: 1rem;
         }
@@ -346,15 +346,16 @@
         }
 
         body.dark-mode header {
-            background: #2d2d2d; /* Fixed Dark Mode header background */
+            background: #2d2d2d;
         }
 
         body.dark-mode header.scrolled {
-            background: rgba(45, 45, 45, 0.95); /* Fixed Dark Mode scrolled header background */
+            background: rgba(45, 45, 45, 0.95);
         }
 
         body.dark-mode .product-card,
-        body.dark-mode .partner-card {
+        body.dark-mode .partner-card,
+        body.dark-mode .event-card {
             background: #333;
             color: #f4f4f4;
         }
@@ -636,14 +637,14 @@
         }
 
         @media (max-width: 400px) {
-            .product-card {
+            .product-card, .event-card {
                 padding: 1rem;
                 width: 100%;
             }
-            .product-image {
+            .product-image, .event-image {
                 height: 150px;
             }
-            .product-image:hover {
+            .product-image:hover, .event-image:hover {
                 max-height: 200px;
             }
             .nav-links {
@@ -665,6 +666,7 @@
             <div class="nav-links">
                 <a href="#" class="home-button">🏠</a>
                 <a href="#shop">Shop</a>
+                <a href="#events">Events</a>
                 <a href="#about">About</a>
                 <a href="#partner">Partner</a>
             </div>
@@ -793,12 +795,47 @@
             </div>
         </section>
 
+       <section id="events" role="region" aria-label="Upcoming Events">
+    <h2>Upcoming Events</h2>
+    <p>Join us at our upcoming TCG events across the Nordics!</p>
+    <div class="filter-bar">
+        <select id="event-type-filter" aria-label="Filter by Event Type">
+            <option value="all">All Events</option>
+            <option value="convention">Conventions</option>
+            <option value="expo">Expos</option>
+        </select>
+        <select id="event-region-filter" aria-label="Filter by Region">
+            <option value="all">All Regions</option>
+            <option value="vastra-gotalands-lan">Västra Götalands län</option>
+            <option value="skane">Skåne</option>
+        </select>
+    </div>
+    <div class="event-grid">
+        <div class="event-card" data-type="convention" data-region="vastra-gotalands-lan">
+            <img src="https://placehold.co/300x200?text=Need+to+be+Geek+Convention" alt="Need to be Geek Convention in Västra Götalands län" class="event-image" loading="lazy">
+            <h3>Need to be Geek Convention – Västra Götalands län, September 2025</h3>
+            <p><strong>Date:</strong> September 27, 2025</p>
+            <p><strong>Location:</strong> Multihallen, Västra Götalands län</p>
+            <p>This geek culture event features everything from Pokémon and Star Wars to Warhammer and DnD. Stop by to see our premium TCG accessories, meet our team, and connect with fellow enthusiasts. Free entry!</p>
+            <a href="https://needtobegeek.se" target="_blank" class="cta-button">Learn More</a>
+        </div>
+        <div class="event-card" data-type="expo" data-region="skane">
+            <img src="https://placehold.co/300x200?text=SweCard+Expo" alt="SweCard Expo in Skåne" class="event-image" loading="lazy">
+            <h3>SweCard Expo – Skåne, October 2025</h3>
+            <p><strong>Date:</strong> October 11, 2025</p>
+            <p><strong>Location:</strong> Skåne (20 minutes from Malmö)</p>
+            <p>We’ll be showcasing our full range of TCG accessories alongside international exhibitors like LetsCollect Cards from Denmark. A great opportunity to explore our products and connect with the TCG community!</p>
+            <a href="https://sweCard.org" target="_blank" class="cta-button">Learn More</a>
+        </div>
+    </div>
+</section>
+
         <section id="about">
             <h2>Our Story</h2>
             <div class="grid-2col">
                 <div class="partner-card">
                     <h3>Founded in 2025</h3>
-                    <p>Hatake TCG was founded by Ernst-William Hertz and Mark Jensen, William Svensson, Virre and they are committed to creating premium, sustainable accessories. Our journey began in Falköping, Sweden, with a vision to revolutionize TCG gear while supporting Nordic industry.</p>
+                    <p>Hatake TCG was founded by Ernst-William Hertz and Mark Jensen, passionate TCG enthusiasts committed to creating premium, sustainable accessories. Our journey began in Falköping, Sweden, with a vision to revolutionize TCG gear while supporting Nordic industry.</p>
                     <p>Hatake TCG isn’t just about products; it’s about building a legacy. William, Virre, Mark, and Ernst-William are dedicated to crafting gear that protects and inspires, all while fostering a community where every player feels at home. With their sights set on full Nordic production, they’re proving that passion, teamwork, and a touch of Nordic elegance can redefine the TCG experience.</p>
                 </div>
                 <div class="partner-card">
@@ -1067,6 +1104,41 @@
         if (categoryFilter && sortFilter) {
             categoryFilter.addEventListener('change', filterProducts);
             sortFilter.addEventListener('change', filterProducts);
+        }
+
+        const eventTypeFilter = document.getElementById('event-type-filter');
+        const eventRegionFilter = document.getElementById('event-region-filter');
+        const eventGrid = document.querySelector('.event-grid');
+        const events = Array.from(document.querySelectorAll('.event-card'));
+
+        function filterEvents() {
+            if (!eventGrid || !events.length) return;
+
+            let filteredEvents = events;
+
+            const type = eventTypeFilter ? eventTypeFilter.value : 'all';
+            if (type !== 'all') {
+                filteredEvents = filteredEvents.filter(event => event.dataset.type === type);
+            }
+
+            const region = eventRegionFilter ? eventRegionFilter.value : 'all';
+            if (region !== 'all') {
+                filteredEvents = filteredEvents.filter(event => event.dataset.region === region);
+            }
+
+            eventGrid.style.display = 'none';
+            eventGrid.innerHTML = '';
+            filteredEvents.forEach(event => eventGrid.appendChild(event));
+            eventGrid.style.display = 'grid';
+
+            if (type === 'all' && region === 'all') {
+                events.forEach(event => eventGrid.appendChild(event));
+            }
+        }
+
+        if (eventTypeFilter && eventRegionFilter) {
+            eventTypeFilter.addEventListener('change', filterEvents);
+            eventRegionFilter.addEventListener('change', filterEvents);
         }
 
         let cart = [];
