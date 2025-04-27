@@ -158,7 +158,7 @@
             border-color: var(--accent);
         }
 
-        .product-grid, .event-grid {
+        .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
             gap: 2rem;
@@ -167,14 +167,23 @@
             justify-content: center;
         }
 
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 400px));
+            gap: 3rem;
+            margin-top: 2rem;
+            justify-items: center;
+            justify-content: center;
+        }
+
         .product-card, .event-card {
             background: white;
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: box-shadow 0.3s, border 0.3s;
             max-width: 100%;
-            width: 300px;
+            width: 350px;
             cursor: pointer;
             position: relative;
         }
@@ -203,7 +212,7 @@
         .product-image:hover, .event-image:hover {
             object-fit: contain;
             height: auto;
-            max-height: 250px;
+            max-height: 300px;
             transform: scale(1.05);
             background: #f9f9f9;
             padding: 0.5rem;
@@ -795,40 +804,40 @@
             </div>
         </section>
 
-       <section id="events" role="region" aria-label="Upcoming Events">
-    <h2>Upcoming Events</h2>
-    <p>Join us at our upcoming TCG events across the Nordics!</p>
-    <div class="filter-bar">
-        <select id="event-type-filter" aria-label="Filter by Event Type">
-            <option value="all">All Events</option>
-            <option value="convention">Conventions</option>
-            <option value="expo">Expos</option>
-        </select>
-        <select id="event-region-filter" aria-label="Filter by Region">
-            <option value="all">All Regions</option>
-            <option value="vastra-gotalands-lan">Västra Götalands län</option>
-            <option value="skane">Skåne</option>
-        </select>
-    </div>
-    <div class="event-grid">
-        <div class="event-card" data-type="convention" data-region="vastra-gotalands-lan">
-            <img src="https://placehold.co/300x200?text=Need+to+be+Geek+Convention" alt="Need to be Geek Convention in Västra Götalands län" class="event-image" loading="lazy">
-            <h3>Need to be Geek Convention – Västra Götalands län, September 2025</h3>
-            <p><strong>Date:</strong> September 27, 2025</p>
-            <p><strong>Location:</strong> Multihallen, Västra Götalands län</p>
-            <p>This geek culture event features everything from Pokémon and Star Wars to Warhammer and DnD. Stop by to see our premium TCG accessories, meet our team, and connect with fellow enthusiasts. Free entry!</p>
-            <a href="https://needtobegeek.se" target="_blank" class="cta-button">Learn More</a>
-        </div>
-        <div class="event-card" data-type="expo" data-region="skane">
-            <img src="https://placehold.co/300x200?text=SweCard+Expo" alt="SweCard Expo in Skåne" class="event-image" loading="lazy">
-            <h3>SweCard Expo – Skåne, October 2025</h3>
-            <p><strong>Date:</strong> October 11, 2025</p>
-            <p><strong>Location:</strong> Skåne (20 minutes from Malmö)</p>
-            <p>We’ll be showcasing our full range of TCG accessories alongside international exhibitors like LetsCollect Cards from Denmark. A great opportunity to explore our products and connect with the TCG community!</p>
-            <a href="https://sweCard.org" target="_blank" class="cta-button">Learn More</a>
-        </div>
-    </div>
-</section>
+        <section id="events" role="region" aria-label="Upcoming Events">
+            <h2>Upcoming Events</h2>
+            <p>Join us at our upcoming TCG events across the Nordics!</p>
+            <div class="filter-bar">
+                <select id="event-type-filter" aria-label="Filter by Event Type">
+                    <option value="all">All Events</option>
+                    <option value="convention">Conventions</option>
+                    <option value="expo">Expos</option>
+                </select>
+                <select id="event-region-filter" aria-label="Filter by Region">
+                    <option value="all">All Regions</option>
+                    <option value="vastra-gotalands-lan">Västra Götalands län</option>
+                    <option value="skane">Skåne</option>
+                </select>
+            </div>
+            <div class="event-grid">
+                <div class="event-card" data-type="convention" data-region="vastra-gotalands-lan">
+                    <img src="https://placehold.co/300x200?text=Need+to+be+Geek+Convention" alt="Need to be Geek Convention in Skara" class="event-image" loading="lazy">
+                    <h3>Need to be Geek Convention – Skara, September 2025</h3>
+                    <p><strong>Date:</strong> September 27, 2025</p>
+                    <p><strong>Location:</strong> Multihallen, Skara</p>
+                    <p>This geek culture event features everything from Pokémon and Star Wars to Warhammer and DnD. Stop by to see our premium TCG accessories, meet our team, and connect with fellow enthusiasts. Free entry!</p>
+                    <a href="https://needtobegeek.se" target="_blank" class="cta-button">Learn More</a>
+                </div>
+                <div class="event-card" data-type="expo" data-region="skane">
+                    <img src="https://placehold.co/300x200?text=SweCard+Expo" alt="SweCard Expo in Svedala" class="event-image" loading="lazy">
+                    <h3>SweCard Expo – Svedala, October 2025</h3>
+                    <p><strong>Date:</strong> October 11, 2025</p>
+                    <p><strong>Location:</strong> Svedala, Skåne (20 minutes from Malmö)</p>
+                    <p>We’ll be showcasing our full range of TCG accessories alongside international exhibitors like LetsCollect Cards from Denmark. A great opportunity to explore our products and connect with the TCG community!</p>
+                    <a href="https://sweCard.org" target="_blank" class="cta-button">Learn More</a>
+                </div>
+            </div>
+        </section>
 
         <section id="about">
             <h2>Our Story</h2>
@@ -1318,74 +1327,4 @@
             '25x 35pt Top-Loaders': 'A pack of 25 35pt top-loaders designed for standard-sized trading cards. These top-loaders provide excellent protection against bends and scratches, keeping your cards in pristine condition during storage or transport.',
             '10x 130pt Top-Loaders': 'A pack of 10 130pt top-loaders, perfect for the playsets you wanna keep safe.. These sturdy top-loaders offer superior protection, ensuring your valuable cards remain safe and secure.',
             'Matte Sleeves': 'A pack of 100 premium black matte sleeves (66x91mm), designed to fit standard-sized trading cards. These sleeves offer a non-glare finish, making them ideal for both casual play and competitive tournaments.',
-            'PU DeckBox': 'This PU DeckBox holds 160+ cards and features a magnetic closure for secure storage. Its multi-functional design includes compartments for dice and accessories, making it a must-have for any TCG player.',
-            '480-Slot Binder': 'A premium zippered binder with 480 slots and side-loading pockets. Designed to keep your collection organized and protected, this binder is perfect for showcasing your cards while ensuring they remain in mint condition.'
-        };
-
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const imgSrc = card.querySelector('.product-image').src;
-                const name = card.dataset.name;
-                lightboxImg.src = imgSrc;
-                lightboxDescription.textContent = productDescriptions[name] || 'No description available.';
-                lightbox.style.display = 'flex';
-            });
-        });
-
-        if (closeLightbox) {
-            closeLightbox.addEventListener('click', () => {
-                lightbox.style.display = 'none';
-            });
-        }
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                lightbox.style.display = 'none';
-            }
-        });
-
-        const preorderForm = document.getElementById('preorder-form');
-        const confirmationMessage = document.getElementById('confirmation-message');
-
-        preorderForm.addEventListener('submit', (e) => {
-            setTimeout(() => {
-                confirmationMessage.style.display = 'block';
-                cart = [];
-                updateCartDisplay();
-                preorderForm.reset();
-                setTimeout(() => {
-                    confirmationMessage.style.display = 'none';
-                }, 5000);
-            }, 1000);
-        });
-
-        const partnerForm = document.getElementById('partner-form');
-        const partnerConfirmationMessage = document.getElementById('partner-confirmation-message');
-
-        if (partnerForm) {
-            partnerForm.addEventListener('submit', (e) => {
-                setTimeout(() => {
-                    partnerConfirmationMessage.style.display = 'block';
-                    partnerForm.reset();
-                    setTimeout(() => {
-                        partnerConfirmationMessage.style.display = 'none';
-                    }, 5000);
-                }, 1000);
-            });
-        }
-
-        document.querySelectorAll('.product-card').forEach(card => {
-            const stock = parseInt(card.dataset.stock);
-            const stockIndicator = card.querySelector('.stock-indicator');
-            if (stock <= 0) {
-                stockIndicator.textContent = 'Preorder Sold Out';
-                stockIndicator.classList.add('sold-out');
-                card.querySelector('.cart-button').disabled = true;
-                card.querySelector('.wishlist-button').disabled = true;
-            }
-        });
-
-        updatePrices('USD');
-    </script>
-</body>
-</html>
+            'PU DeckBox': 'This PU DeckBox holds 160+ cards and features a magnetic closure for secure storage. Its multi-functional design includes compartments
